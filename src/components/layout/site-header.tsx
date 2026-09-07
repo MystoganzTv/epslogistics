@@ -21,7 +21,13 @@ export function SiteHeader() {
 
   useEffect(() => {
     if (!overHero) return;
-    const onScroll = () => setScrolled(window.scrollY > 40);
+    // Histeresis: se vuelve solido pasados 72px y solo vuelve a ser
+    // transparente por debajo de 24px. Con un unico umbral, el temblor del
+    // scroll cerca del limite hacia parpadear el header.
+    const onScroll = () => {
+      const y = window.scrollY;
+      setScrolled((wasScrolled) => (wasScrolled ? y > 24 : y > 72));
+    };
     // rAF en vez de llamar directo: evita un setState sincrono en el efecto.
     const id = requestAnimationFrame(onScroll);
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -40,7 +46,7 @@ export function SiteHeader() {
   return (
     <header
       className={cn(
-        "sticky top-0 z-60 transition-colors duration-300",
+        "sticky top-0 z-60 transform-gpu transition-colors duration-300",
         floating
           ? "border-b border-transparent bg-transparent"
           : "border-b border-line-header bg-white/95 backdrop-blur-[14px]",
