@@ -11,7 +11,7 @@ con base en Virginia, operando bajo autoridad propia (USDOT #6997514 / MC
 | Next.js | 16 | App Router, React 19, Turbopack |
 | TypeScript | 5 | `strict` |
 | Tailwind CSS | v4 | tokens de marca en `src/app/globals.css` |
-| Supabase | `@supabase/ssr` | auth + Postgres con RLS |
+| Resend | 6 | envio del correo de cotizacion |
 | Zod | 4 | validacion compartida del formulario |
 | d3-geo | 3 | proyeccion del mapa de cobertura |
 
@@ -23,27 +23,25 @@ cp .env.example .env.local     # rellenar con las claves de Supabase
 npm run dev
 ```
 
-Scripts: `dev`, `build`, `start`, `lint`, `typecheck`, `db:push`, `db:types`,
-`db:geo`.
+Scripts: `dev`, `build`, `start`, `lint`, `typecheck`, `db:geo`.
+
+Sin `RESEND_API_KEY` el sitio funciona: el formulario valida y muestra el
+mensaje de error de envio. Solo el correo queda sin salir.
 
 ## Estructura
 
 ```
 src/
   app/
-    (marketing)/       sitio publico: home, services, coverage, about,
-                       why-eps, contact, quote, privacy, terms
-    (portal)/portal/   bandeja interna de solicitudes de cotizacion
-    (auth)/login/      acceso del staff
-    auth/callback|signout/
-    actions/quote.ts   server action del formulario de cotizacion
-    api/               (vacio)
+    (marketing)/       home, services, coverage, about, why-eps,
+                       contact, quote, privacy, terms
+    actions/quote.ts   server action del formulario
+    sitemap.ts, robots.ts
   components/
     brand/             wordmark EPS
     layout/            header y footer
     sections/          bloques reutilizados entre paginas
     ui/                button, card, field, icon, eyebrow, map-legend
-    portal/            tabla de solicitudes
     coverage-map.tsx   mapa de lanes (SSR + refinado en cliente)
     quote-form.tsx     formulario publico
   data/us-contiguous.json  geometria de los 48 estados (generada)
@@ -51,9 +49,8 @@ src/
     site.ts            TODO el contenido y los datos de contacto
     icons.ts           paths SVG del diseno
     quote-schema.ts    esquema Zod compartido
-    supabase/          clientes browser / server / session
-  proxy.ts             refresco de sesion + guard de /portal
-supabase/migrations/   esquema SQL
+    email.ts           render y envio del correo de cotizacion
+docs/                  esquema SQL sin usar, para cuando haga falta una BD
 design/                export original del canvas (.dc.html)
 ```
 
@@ -73,34 +70,34 @@ regiones, lanes del mapa y textos de marca se cambian ahi, no en las paginas.
 Tipografia: **Archivo** (display), **Manrope** (texto), **Caveat** (la nota
 manuscrita del hero). Las tres via `next/font/google`.
 
-## Supabase
+## El formulario de cotizacion
 
-El esquema esta en `supabase/migrations/20260907000000_init.sql`:
+No hay base de datos. El formulario valida con Zod en el servidor y manda un
+correo con Resend a `QUOTE_TO_EMAIL`, con `replyTo` puesto al email de quien
+cotiza — responder en Gmail contesta directo al cliente. La bandeja de entrada
+es el sistema de registro.
 
-- **`quote_requests`** — lo que envia el formulario publico. RLS permite
-  `INSERT` a `anon` solo con `status = 'new'` y `source = 'website'`; leer y
-  actualizar queda restringido al staff autenticado. No hay policy de `DELETE`:
-  las solicitudes se archivan.
-- **`profiles`** — usuarios internos. Se crea sola con un trigger sobre
-  `auth.users`. El `role` no es escribible desde el cliente (el `GRANT` solo
-  expone `full_name`).
+Para activarlo:
 
-Para aplicarlo:
+1. Crear cuenta en [resend.com](https://resend.com) y generar una API key.
+2. Ponerla en `RESEND_API_KEY` (local en `.env.local`, en produccion en las
+   variables de entorno de Vercel).
+3. Mientras el dominio no este verificado, dejar `QUOTE_FROM_EMAIL` con
+   `onboarding@resend.dev`. Ese remitente de pruebas **solo puede enviar al
+   correo de la propia cuenta de Resend** — para que llegue a
+   `info@epslogistics.com` hay que verificar el dominio en Resend > Domains y
+   cambiar el remitente a algo como `quotes@epslogistics.com`.
 
-```bash
-npx supabase link --project-ref <ref>
-npm run db:push
-SUPABASE_PROJECT_ID=<ref> npm run db:types   # regenera src/types/database.ts
-```
+El render del correo esta separado del envio (`renderQuoteEmail`), asi que se
+puede previsualizar sin mandar nada.
 
-Luego crea el usuario del staff en Auth > Users; el trigger crea su perfil y con
-eso `/portal` ya lista las solicitudes.
+Cuando el volumen justifique guardar historial, `docs/quote-requests-schema.sql`
+tiene el esquema Postgres con RLS ya pensado.
 
 ## Pendiente
 
-- [ ] Crear el proyecto de Supabase y rellenar `.env.local`
-- [ ] Aplicar la migracion y regenerar los tipos
-- [ ] Notificacion por email al recibir una cotizacion (hoy solo se guarda)
+- [ ] Cuenta de Resend + `RESEND_API_KEY` en Vercel
+- [ ] Verificar epslogistics.com en Resend y cambiar el remitente
 - [ ] Rate limiting en la server action — el honeypot solo frena bots basicos
 - [ ] Redactar `privacy` y `terms` de verdad; los actuales son placeholders
 - [ ] Fotos: las del canvas son renders. Sustituir por fotos reales del camion

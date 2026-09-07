@@ -1,3 +1,13 @@
+-- NO ESTA EN USO.
+--
+-- Hoy el formulario de cotizacion manda un correo con Resend y no guarda nada.
+-- Este esquema queda aqui para el dia en que el volumen justifique una base de
+-- datos: crea quote_requests y profiles con RLS pensada para que el formulario
+-- publico solo pueda insertar y solo el staff autenticado pueda leer.
+--
+-- Para usarlo: crear el proyecto en Supabase, mover este archivo a
+-- supabase/migrations/, y volver a instalar @supabase/ssr.
+--
 -- ============================================================================
 -- EPS Logistics — esquema inicial
 --   quote_requests : solicitudes de cotizacion enviadas desde el sitio publico

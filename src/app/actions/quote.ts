@@ -1,14 +1,14 @@
 "use server";
 
-import { headers } from "next/headers";
-import { createClient } from "@/lib/supabase/server";
 import { quoteSchema, type QuoteFormState } from "@/lib/quote-schema";
+import { sendQuoteEmail } from "@/lib/email";
+
+const FALLBACK =
+  "We couldn't send the form right now. Please call or email us and we'll take the details directly.";
 
 /**
- * Recibe el formulario publico de cotizacion.
- * La insercion va con la anon key: la policy de RLS solo permite INSERT con
- * status = 'new' y source = 'website', asi que el cliente no puede escribir
- * campos internos ni leer nada.
+ * Formulario publico de cotizacion: valida y manda un correo a EPS.
+ * No se guarda nada — la bandeja de entrada es el sistema de registro.
  */
 export async function submitQuoteRequest(
   _prev: QuoteFormState,
@@ -35,44 +35,15 @@ export async function submitQuoteRequest(
     };
   }
 
-  const v = parsed.data;
-
-  if (!process.env.NEXT_PUBLIC_SUPABASE_URL) {
-    console.error("[quote] Falta NEXT_PUBLIC_SUPABASE_URL");
-    return {
-      status: "error",
-      message:
-        "We couldn't submit the form right now. Please call or email us and we'll take the details directly.",
-    };
-  }
-
-  const supabase = await createClient();
-
-  const { error } = await supabase.from("quote_requests").insert({
-    company: v.company,
-    contact_name: v.contact,
-    email: v.email.toLowerCase(),
-    phone: v.phone,
-    pickup_city: v.puCity,
-    pickup_state: v.puState,
-    delivery_city: v.doCity,
-    delivery_state: v.doState,
-    pickup_date: v.date,
-    freight_type: v.freight,
-    pallets: v.pallets,
-    weight_lbs: v.weight,
-    notes: v.notes?.trim() ? v.notes.trim() : null,
+  const result = await sendQuoteEmail({
+    ...parsed.data,
+    email: parsed.data.email.toLowerCase(),
   });
 
-  if (error) {
+  if (!result.ok) {
     // El detalle solo al log del servidor; al visitante, una salida util.
-    const ua = (await headers()).get("user-agent") ?? "";
-    console.error("[quote] insert fallo", { code: error.code, message: error.message, ua });
-    return {
-      status: "error",
-      message:
-        "We couldn't submit the form right now. Please call or email us and we'll take the details directly.",
-    };
+    console.error("[quote] envio fallido", result);
+    return { status: "error", message: FALLBACK };
   }
 
   return { status: "success" };

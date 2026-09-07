@@ -8,19 +8,15 @@
     "start": "next start",
     "lint": "eslint src scripts",
     "typecheck": "tsc --noEmit",
-    "db:geo": "node scripts/build-us-geo.mjs",
-    "db:push": "supabase db push",
-    "db:types": "supabase gen types typescript --project-id $SUPABASE_PROJECT_ID --schema public > src/types/database.ts"
+    "db:geo": "node scripts/build-us-geo.mjs"
   },
   "dependencies": {
-    "@supabase/ssr": "^0.12.6",
-    "@supabase/supabase-js": "^2.116.0",
     "clsx": "^2.1.1",
     "d3-geo": "^3.1.1",
-    "lucide-react": "^1.42.0",
     "next": "16.3.4",
     "react": "19.2.8",
     "react-dom": "19.2.8",
+    "resend": "^6.26.0",
     "tailwind-merge": "^3.6.0",
     "zod": "^4.5.4"
   },
