@@ -3,40 +3,48 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { site } from "@/lib/site";
 
+/** Proporciones del simbolo recortado del logo oficial. */
+const MARK = { w: 309, h: 451 };
+
 /**
- * Marca del header/footer: simbolo + "EPS / LOGISTICS" apilado.
+ * Marca del header/footer: el simbolo oficial de EPS mas "EPS / LOGISTICS".
  * `tagline` anade el lockup de tres lineas separado por una barra.
  */
 export function Wordmark({
   tone = "dark",
   tagline = false,
-  markWidth = 50,
+  markHeight = 44,
   className,
   priority = false,
 }: {
+  /** "dark" = sobre fondo claro. "light" = sobre fondo oscuro. */
   tone?: "dark" | "light";
   tagline?: boolean;
-  markWidth?: number;
+  markHeight?: number;
   className?: string;
   priority?: boolean;
 }) {
-  const text = tone === "dark" ? "text-ink" : "text-white";
+  const onDark = tone === "light";
 
   return (
     <Link
       href="/"
       aria-label={`${site.name} — home`}
-      className={cn("flex shrink-0 items-center gap-[13px]", className)}
+      className={cn("flex shrink-0 items-center gap-3.5", className)}
     >
       <Image
-        src="/eps-mark.png"
+        src={onDark ? "/eps-mark-light.png" : "/eps-mark.png"}
         alt=""
-        width={markWidth}
-        height={Math.round((markWidth * 280) / 352)}
+        width={Math.round((markHeight * MARK.w) / MARK.h)}
+        height={markHeight}
         priority={priority}
-        className="h-auto"
       />
-      <span className={cn("flex flex-col leading-[0.94]", text)}>
+      <span
+        className={cn(
+          "flex flex-col leading-[0.94]",
+          onDark ? "text-white" : "text-ink",
+        )}
+      >
         <span className="font-display text-[23px] font-black tracking-[-0.02em]">
           EPS
         </span>

@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     description: `${site.headline} ${site.shortDescription}`,
     images: ["/og.png"],
   },
-  icons: { icon: "/eps-mark.png", apple: "/eps-mark.png" },
+  icons: { icon: "/icon.png", apple: "/icon.png" },
 };
 
 /** Schema.org — el carrier, su autoridad y el area que sirve. */

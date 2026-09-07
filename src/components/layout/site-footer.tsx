@@ -22,7 +22,7 @@ export function SiteFooter() {
       <div className="shell pb-[30px] pt-14">
         <div className="grid gap-9 sm:grid-cols-2 lg:grid-cols-4">
           <div>
-            <Wordmark tone="light" markWidth={48} />
+            <Wordmark tone="light" markHeight={40} />
             <p className="mt-5 font-display text-[15px] font-bold tracking-[-0.01em] text-brand-soft">
               {site.tagline}.
             </p>
