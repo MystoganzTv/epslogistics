@@ -20,9 +20,9 @@ export const site = {
   headline: "Reliable Freight. Real Solutions. Every Mile.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://epslogistics.com",
   description:
-    "EPS Logistics is a Virginia-based, owner-operated box truck carrier (USDOT #6997514 / MC #66625517) moving freight outbound and inbound across the Mid-Atlantic, Central and Southern United States. Local and regional delivery, dedicated routes and long-distance freight.",
+    "EPS Logistics is a Virginia-based, owner-operated box truck carrier (USDOT #6997514 / MC #66625517) moving freight outbound and inbound across the Mid-Atlantic, Midwest and Southern United States. Local and regional delivery, dedicated routes and long-distance freight.",
   shortDescription:
-    "Virginia-based transportation solutions serving businesses across the Mid-Atlantic, Central, and Southern United States.",
+    "Virginia-based transportation solutions serving businesses across the Mid-Atlantic, Midwest, and Southern United States.",
   phone: formatPhone(PHONE_RAW),
   phoneHref: `tel:+${phoneDigits.length === 10 ? "1" + phoneDigits : phoneDigits}`,
   email: "info@epslogistics.com",
@@ -30,7 +30,7 @@ export const site = {
     return `mailto:${this.email}`;
   },
   region: "Virginia, USA",
-  regionSub: "Serving the Mid-Atlantic, Central & Southern U.S.",
+  regionSub: "Serving the Mid-Atlantic, Midwest & Southern U.S.",
   usdot: "6997514",
   mc: "66625517",
   /** Solo se muestran los que tengan URL. */
@@ -76,8 +76,8 @@ export const services = [
   {
     slug: "long-distance",
     title: "Long-Distance Freight",
-    short: "Virginia connected to the Central and Southern U.S. — both ways.",
-    body: "Reliable transportation connecting Virginia with destinations throughout the Central and Southern United States — outbound loads and inbound freight returning to Virginia.",
+    short: "Virginia connected to the Midwest and Southern U.S. — both ways.",
+    body: "Reliable transportation connecting Virginia with destinations throughout the Midwest and Southern United States — outbound loads and inbound freight returning to Virginia.",
     icon: "route",
   },
   {
@@ -149,7 +149,7 @@ export const legend = [
   },
   {
     color: "#A8C9FF",
-    label: "Extended lanes — Central & Southern U.S., both directions",
+    label: "Extended lanes — Midwest, Central & Southern U.S., both directions",
   },
 ] as const;
 
@@ -171,8 +171,13 @@ export const regions = [
   },
   {
     tag: "Extended lanes",
+    title: "Midwest",
+    body: "Long-distance lanes into Michigan, Ohio, Indiana, Illinois, Wisconsin, and the surrounding Great Lakes markets — outbound and back.",
+  },
+  {
+    tag: "Extended lanes",
     title: "Central & Southern U.S.",
-    body: "Selected long-distance lanes reaching Ohio, Indiana, Kentucky, Mississippi, Louisiana, and Texas markets, outbound or inbound.",
+    body: "Selected long-distance lanes reaching Kentucky, Missouri, Mississippi, Louisiana, and Texas markets, outbound or inbound.",
   },
 ] as const;
 
@@ -211,8 +216,9 @@ export const howWeWork = [
 
 /** Estados que el formulario ofrece, alineados con las lanes reales. */
 export const STATES = [
-  "AL", "AR", "DC", "DE", "FL", "GA", "IL", "IN", "KY", "LA", "MD", "MO",
-  "MS", "NC", "NJ", "NY", "OH", "OK", "PA", "SC", "TN", "TX", "VA", "WV",
+  "AL", "AR", "DC", "DE", "FL", "GA", "IA", "IL", "IN", "KY", "LA", "MD",
+  "MI", "MN", "MO", "MS", "NC", "NJ", "NY", "OH", "OK", "PA", "SC", "TN",
+  "TX", "VA", "WI", "WV",
 ] as const;
 
 export const FREIGHT_TYPES = [
@@ -235,5 +241,7 @@ export const HUBS = [
   { name: "Nashville, TN", coords: [-86.78, 36.16], tier: 2 },
   { name: "Jacksonville, FL", coords: [-81.66, 30.33], tier: 2 },
   { name: "Memphis, TN", coords: [-90.05, 35.15], tier: 2 },
+  { name: "Detroit, MI", coords: [-83.05, 42.33], tier: 2 },
+  { name: "Chicago, IL", coords: [-87.63, 41.88], tier: 2 },
   { name: "Dallas, TX", coords: [-96.8, 32.78], tier: 2 },
 ] satisfies { name: string; coords: [number, number]; tier: 1 | 2 }[];

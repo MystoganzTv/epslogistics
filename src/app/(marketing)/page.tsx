@@ -161,7 +161,7 @@ export default function HomePage() {
               </h2>
               <p className="mb-[22px] text-base leading-[1.66] text-muted">
                 From local Virginia deliveries to long-distance freight across the
-                Central and Southern United States, EPS Logistics connects
+                Midwest and Southern United States, EPS Logistics connects
                 businesses with dependable transportation solutions —{" "}
                 <strong className="font-bold text-ink">
                   freight moving out of Virginia and freight coming back in

@@ -109,7 +109,7 @@ export function CoverageMap({ className }: { className?: string }) {
           viewBox={`0 0 ${w} ${h}`}
           className="block"
           role="img"
-          aria-label="Map of EPS Logistics freight lanes radiating from Virginia across the Mid-Atlantic, Southeast and Central United States"
+          aria-label="Map of EPS Logistics freight lanes radiating from Virginia across the Mid-Atlantic, Southeast, Midwest and Southern United States"
         >
           <defs>
             <radialGradient

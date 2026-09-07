@@ -8,7 +8,7 @@ import { regions } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Coverage",
   description:
-    "EPS Logistics runs lanes in both directions between Virginia and the Mid-Atlantic, Southeast, and Central and Southern United States.",
+    "EPS Logistics runs lanes in both directions between Virginia and the Mid-Atlantic, Southeast, Midwest and Southern United States.",
 };
 
 export default function CoveragePage() {
@@ -20,7 +20,7 @@ export default function CoveragePage() {
         intro={
           <>
             From local Virginia deliveries to long-distance freight across the
-            Central and Southern United States, EPS Logistics connects businesses
+            Midwest and Southern United States, EPS Logistics connects businesses
             with dependable transportation solutions. Lanes run{" "}
             <strong className="font-bold text-white">in both directions</strong> —
             outbound from Virginia and inbound back home.
@@ -36,7 +36,7 @@ export default function CoveragePage() {
 
       <section className="bg-white">
         <div className="shell py-[76px]">
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {regions.map((r) => (
               <div
                 key={r.title}

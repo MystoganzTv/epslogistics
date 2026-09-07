@@ -34,7 +34,7 @@ export default function AboutPage() {
                 and general cargo.
               </p>
               <p className="mb-4 text-base leading-[1.7] text-muted-strong">
-                We haul out of Virginia into the Mid-Atlantic, Central, and
+                We haul out of Virginia into the Mid-Atlantic, Midwest, and
                 Southern United States, and we haul back in — inbound freight to
                 Virginia is just as much our lane as outbound.
               </p>

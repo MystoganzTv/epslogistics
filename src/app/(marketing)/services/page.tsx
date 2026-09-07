@@ -17,7 +17,7 @@ export default function ServicesPage() {
       <PageHero
         eyebrow="Services"
         title="Transportation Solutions That Keep Your Business Moving"
-        intro="Box truck freight built around real schedules, real lanes, and real communication — throughout Virginia and across the Mid-Atlantic, Central, and Southern United States, outbound and inbound. We move the freight ourselves, under our own authority."
+        intro="Box truck freight built around real schedules, real lanes, and real communication — throughout Virginia and across the Mid-Atlantic, Midwest, and Southern United States, outbound and inbound. We move the freight ourselves, under our own authority."
       />
 
       <section className="bg-white">

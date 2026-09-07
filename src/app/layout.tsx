@@ -59,7 +59,7 @@ const jsonLd = {
   telephone: site.phone,
   email: site.email,
   description:
-    "Virginia-based, owner-operated box truck carrier running under its own USDOT and MC authority. Local and regional delivery, dedicated routes and long-distance freight moving outbound from and inbound to Virginia across the Mid-Atlantic, Central and Southern United States. A carrier, not a broker or dispatch service.",
+    "Virginia-based, owner-operated box truck carrier running under its own USDOT and MC authority. Local and regional delivery, dedicated routes and long-distance freight moving outbound from and inbound to Virginia across the Mid-Atlantic, Midwest and Southern United States. A carrier, not a broker or dispatch service.",
   address: {
     "@type": "PostalAddress",
     addressRegion: "VA",
@@ -73,6 +73,7 @@ const jsonLd = {
     { "@type": "State", name: "Virginia" },
     { "@type": "Place", name: "Mid-Atlantic United States" },
     { "@type": "Place", name: "Southern United States" },
+    { "@type": "Place", name: "Midwest United States" },
     { "@type": "Place", name: "Central United States" },
   ],
   knowsAbout: [
