@@ -53,7 +53,7 @@ export const nav = [
 export const trust = [
   { label: "On-Time Delivery", icon: "clock" },
   { label: "Safe & Insured", icon: "shield" },
-  { label: "Regional Coverage", icon: "pin" },
+  { label: "Regional + Long-Distance", icon: "pin" },
   { label: "Business Focused", icon: "users" },
 ] satisfies { label: string; icon: IconName }[];
 

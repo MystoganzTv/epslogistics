@@ -6,90 +6,86 @@ import { Eyebrow } from "@/components/ui/eyebrow";
 import { Icon } from "@/components/ui/icon";
 import { MapLegend } from "@/components/ui/map-legend";
 import { CoverageMap } from "@/components/coverage-map";
-import { AuthorityBadges } from "@/components/sections/authority-badges";
 import { PartnersSection } from "@/components/sections/partners";
 import { services, site, trust, values } from "@/lib/site";
+import { cn } from "@/lib/utils";
 
 export default function HomePage() {
   return (
     <>
-      {/* ---------- Hero ---------- */}
-      <section className="relative overflow-hidden bg-abyss">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(1100px_620px_at_78%_18%,rgba(22,104,227,0.22)_0%,rgba(7,21,39,0)_70%)]" />
-        <div className="shell relative grid items-center gap-11 pb-[78px] pt-[70px] lg:grid-cols-2">
-          <div className="animate-eps-up">
-            <h1 className="display text-[clamp(36px,4.6vw,62px)] leading-[1.04] tracking-[-0.032em] text-white">
-              Reliable Freight.
-              <br />
-              Real Solutions.
-              <br />
-              <span className="text-brand-bright">Every Mile.</span>
-            </h1>
-            <p className="mt-[26px] max-w-[500px] text-[17.5px] leading-[1.62] text-onDark-strong">
-              {site.shortDescription}
-            </p>
+      {/* ---------- Hero: la foto a sangre, el header flota encima ---------- */}
+      <section className="relative isolate -mt-[74px] flex min-h-[680px] flex-col justify-end overflow-hidden pt-[74px] lg:min-h-[88vh]">
+        <Image
+          src="/photos/hero-truck.webp"
+          alt="EPS Logistics box truck on the interstate, headed for Washington DC, Richmond, Raleigh and Atlanta"
+          fill
+          priority
+          sizes="100vw"
+          className="-z-20 object-cover object-[68%_center]"
+        />
+        {/* Oscurecido general + caida hacia la izquierda, para que lea el texto. */}
+        <div className="absolute inset-0 -z-10 bg-[linear-gradient(100deg,rgba(6,17,33,0.92)_0%,rgba(6,17,33,0.72)_38%,rgba(6,17,33,0.28)_62%,rgba(6,17,33,0.35)_100%)]" />
+        <div className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(6,17,33,0.55)_0%,rgba(6,17,33,0)_28%,rgba(6,17,33,0)_62%,rgba(6,17,33,0.8)_100%)]" />
 
-            <div className="mt-[34px] flex flex-wrap gap-3.5">
-              <ButtonLink href="/quote" size="lg" arrow>
-                Request a Quote
-              </ButtonLink>
-              <ButtonLink href="/contact" variant="outlineLight" size="lg">
-                Contact Us
-              </ButtonLink>
-            </div>
+        <div className="shell absolute right-0 top-[96px] hidden text-right lg:block">
+          <p className="font-display text-[12.5px] font-bold uppercase leading-[1.7] tracking-[0.22em] text-white">
+            Virginia based.
+            <br />
+            Further together.
+          </p>
+          <span className="ml-auto mt-3 block h-[3px] w-14 rounded-full bg-brand-bright" />
+        </div>
 
-            <ul className="mt-[50px] grid max-w-[620px] grid-cols-2 gap-x-4 gap-y-[22px] sm:grid-cols-4 lg:grid-cols-2 xl:grid-cols-4">
-              {trust.map((t) => (
-                <li key={t.label} className="flex items-center gap-[11px]">
-                  <span className="shrink-0 text-brand-pale">
-                    <Icon name={t.icon} size={23} strokeWidth={1.7} />
+        <div className="shell animate-eps-up flex flex-1 flex-col justify-center py-16 lg:py-24">
+          <h1 className="display max-w-[15ch] text-[clamp(38px,5.4vw,72px)] uppercase leading-[1.02] tracking-[-0.03em] text-white">
+            Reliable Freight.
+            <br />
+            Real Solutions.
+            <br />
+            <span className="text-brand-bright">Every Mile.</span>
+          </h1>
+          <p className="mt-7 max-w-[540px] text-[17px] leading-[1.62] text-onDark-strong sm:text-[18px]">
+            {site.shortDescription}
+          </p>
+          <div className="mt-9 flex flex-wrap gap-3.5">
+            <ButtonLink href="/quote" size="lg" arrow className="uppercase tracking-[0.06em]">
+              Request a Quote
+            </ButtonLink>
+            <ButtonLink
+              href="/services"
+              variant="outlineLight"
+              size="lg"
+              className="uppercase tracking-[0.06em]"
+            >
+              Explore Services
+            </ButtonLink>
+          </div>
+        </div>
+
+        {/* Franja de confianza, pegada al borde inferior del hero. */}
+        <div className="relative border-t border-white/15 bg-[rgba(6,17,33,0.35)] backdrop-blur-[2px]">
+          <div className="shell flex flex-wrap items-center justify-between gap-x-6 gap-y-4 py-5">
+            <ul className="flex flex-wrap items-center gap-y-4">
+              {trust.map((t, i) => (
+                <li
+                  key={t.label}
+                  className={cn(
+                    "flex items-center gap-2.5 whitespace-nowrap pr-4 sm:pr-5",
+                    i > 0 && "sm:border-l sm:border-white/20 sm:pl-4 lg:pl-5",
+                  )}
+                >
+                  <span className="shrink-0 text-brand-bright">
+                    <Icon name={t.icon} size={21} strokeWidth={1.7} />
                   </span>
-                  <span className="font-display text-[13.5px] font-semibold leading-[1.28] text-[#e7eef8]">
+                  <span className="font-display text-[11.5px] font-bold uppercase leading-[1.3] tracking-[0.08em] text-white">
                     {t.label}
                   </span>
                 </li>
               ))}
             </ul>
-
-            <div className="mt-[30px] flex flex-wrap gap-2.5">
-              <AuthorityBadges />
-              <span className="rounded-full border border-brand-pale/55 bg-brand/15 px-[15px] py-[7px] font-display text-[11.5px] font-bold tracking-[0.12em] text-[#bfd9ff]">
-                OWNER-OPERATOR · OUR OWN AUTHORITY
-              </span>
-            </div>
-          </div>
-
-          <div className="animate-eps-in relative min-h-[430px] overflow-hidden rounded-[20px] border border-white/15 shadow-[0_30px_70px_rgba(0,0,0,0.42)] lg:min-h-[470px]">
-            <Image
-              src="/photos/hero-truck.webp"
-              alt="EPS Logistics box truck on the interstate, headed for Washington DC, Richmond, Raleigh and Atlanta"
-              fill
-              priority
-              sizes="(max-width: 1024px) 100vw, 50vw"
-              className="object-cover object-[62%_center]"
-            />
-            <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(6,20,38,0)_48%,rgba(6,20,38,0.72)_100%)]" />
-            <div className="pointer-events-none absolute bottom-6 left-7">
-              <p className="font-script text-[31px] font-semibold leading-[1.05] text-white drop-shadow-[0_2px_12px_rgba(6,20,38,0.6)]">
-                More Than Freight
-                <br />— Progress.
-              </p>
-              <svg
-                width="128"
-                height="14"
-                viewBox="0 0 150 16"
-                fill="none"
-                className="mt-0.5 block"
-                aria-hidden
-              >
-                <path
-                  d="M4 11C40 3 100 3 146 8"
-                  stroke="#3B8BFF"
-                  strokeWidth="5"
-                  strokeLinecap="round"
-                />
-              </svg>
-            </div>
+            <p className="whitespace-nowrap font-display text-[11px] font-bold uppercase tracking-[0.14em] text-white/50">
+              USDOT #{site.usdot} · MC #{site.mc}
+            </p>
           </div>
         </div>
       </section>
