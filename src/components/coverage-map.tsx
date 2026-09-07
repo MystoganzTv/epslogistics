@@ -75,24 +75,28 @@ export function CoverageMap({ className }: { className?: string }) {
         (va[0] + p[0]) / 2,
         (va[1] + p[1]) / 2 + (p[1] > va[1] ? bow : -bow),
       ];
-      const arrowSize = Math.max(2.8, w * 0.0065);
+      // Toda lane lleva dos cabezas opuestas: la carga sale y vuelve.
+      const arrowSize =
+        Math.max(2.6, w * 0.006) * (hub.tier === 1 ? 1 : 0.85);
+      // Separacion fija en pixeles desde el centro, no en t: si no, en las
+      // lanes cortas las dos cabezas se montan una encima de la otra.
+      const len = quadLength(va, c, p);
+      const spread = Math.min(0.22, Math.max(0.07, 22 / Math.max(len, 1)));
+      const arrows = [0.5 + spread, 0.5 - spread].map((t, i) => {
+        const a = quadAt(va, c, p, t);
+        return {
+          d: `M${-arrowSize},${-arrowSize * 0.7} L${arrowSize * 0.9},0 L${-arrowSize},${arrowSize * 0.7} Z`,
+          transform: `translate(${a.x},${a.y}) rotate(${i === 0 ? a.angle : a.angle + 180})`,
+        };
+      });
+
       return {
         name: hub.name,
         tier: hub.tier,
         point: p,
         d: `M${va[0]},${va[1]} Q${c[0]},${c[1]} ${p[0]},${p[1]}`,
-        length: quadLength(va, c, p),
-        // Cabezas en ambos sentidos: la lane corre de ida y de vuelta.
-        arrows:
-          hub.tier === 1
-            ? [0.6, 0.4].map((t, i) => {
-                const a = quadAt(va, c, p, t);
-                return {
-                  d: `M${-arrowSize},${-arrowSize * 0.7} L${arrowSize * 0.9},0 L${-arrowSize},${arrowSize * 0.7} Z`,
-                  transform: `translate(${a.x},${a.y}) rotate(${i === 0 ? a.angle : a.angle + 180})`,
-                };
-              })
-            : [],
+        length: len,
+        arrows,
       };
     }).filter((l): l is NonNullable<typeof l> => l !== null);
 
@@ -109,7 +113,7 @@ export function CoverageMap({ className }: { className?: string }) {
           viewBox={`0 0 ${w} ${h}`}
           className="block"
           role="img"
-          aria-label="Map of EPS Logistics freight lanes radiating from Virginia across the Mid-Atlantic, Southeast, Midwest and Southern United States"
+          aria-label="Map of EPS Logistics two-way freight lanes between Virginia and the East Coast, Southeast, Great Lakes, Midwest and Southern United States"
         >
           <defs>
             <radialGradient
@@ -150,12 +154,12 @@ export function CoverageMap({ className }: { className?: string }) {
                 key={lane.name}
                 d={lane.d}
                 stroke={lane.tier === 2 ? "#8FBAF0" : "#D5E6FF"}
-                strokeWidth={lane.tier === 2 ? 1 : 1.3}
-                strokeOpacity={lane.tier === 2 ? 0.42 : 0.62}
+                strokeWidth={lane.tier === 2 ? 0.9 : 1.25}
+                strokeOpacity={lane.tier === 2 ? 0.4 : 0.62}
                 strokeDasharray={lane.length}
                 strokeDashoffset={lane.length}
                 style={{
-                  animation: `eps-dash 1.1s ease ${0.15 + i * 0.07}s forwards`,
+                  animation: `eps-dash 1.1s ease ${0.12 + i * 0.045}s forwards`,
                 }}
               />
             ))}
@@ -166,11 +170,11 @@ export function CoverageMap({ className }: { className?: string }) {
                   d={arrow.d}
                   transform={arrow.transform}
                   fill="#EAF3FF"
-                  fillOpacity={0.8}
+                  fillOpacity={lane.tier === 2 ? 0.6 : 0.85}
                   stroke="none"
                   style={{
                     opacity: 0,
-                    animation: `eps-in .4s ease ${0.9 + i * 0.07}s forwards`,
+                    animation: `eps-in .4s ease ${0.85 + i * 0.045}s forwards`,
                   }}
                 />
               )),

@@ -145,11 +145,11 @@ export const legend = [
   { color: "#1668E3", label: "Home base — Virginia" },
   {
     color: "#5C9BFF",
-    label: "Core lanes — Mid-Atlantic & Southeast, both directions",
+    label: "Core lanes — East Coast & Southeast, outbound and inbound",
   },
   {
     color: "#A8C9FF",
-    label: "Extended lanes — Midwest, Central & Southern U.S., both directions",
+    label: "Extended lanes — Midwest, Great Lakes & South, outbound and inbound",
   },
 ] as const;
 
@@ -158,6 +158,11 @@ export const regions = [
     tag: "Home base",
     title: "Virginia",
     body: "Local pickups and deliveries statewide, from the Richmond and Hampton Roads corridors to Northern Virginia.",
+  },
+  {
+    tag: "Core lanes",
+    title: "Northeast",
+    body: "Runs up the I-95 corridor into New Jersey, New York and New England, and back down with return freight.",
   },
   {
     tag: "Core lanes",
@@ -216,9 +221,9 @@ export const howWeWork = [
 
 /** Estados que el formulario ofrece, alineados con las lanes reales. */
 export const STATES = [
-  "AL", "AR", "DC", "DE", "FL", "GA", "IA", "IL", "IN", "KY", "LA", "MD",
-  "MI", "MN", "MO", "MS", "NC", "NJ", "NY", "OH", "OK", "PA", "SC", "TN",
-  "TX", "VA", "WI", "WV",
+  "AL", "AR", "CT", "DC", "DE", "FL", "GA", "IA", "IL", "IN", "KS", "KY",
+  "LA", "MA", "MD", "ME", "MI", "MN", "MO", "MS", "NC", "NE", "NH", "NJ",
+  "NY", "OH", "OK", "PA", "RI", "SC", "TN", "TX", "VA", "VT", "WI", "WV",
 ] as const;
 
 export const FREIGHT_TYPES = [
@@ -234,14 +239,24 @@ export const FREIGHT_TYPES = [
 export const VIRGINIA: [number, number] = [-77.46, 37.54];
 
 export const HUBS = [
+  // Nucleo: Noreste, Mid-Atlantic y Sureste.
+  { name: "New York, NY", coords: [-74.01, 40.71], tier: 1 },
   { name: "Philadelphia, PA", coords: [-75.16, 39.95], tier: 1 },
   { name: "Baltimore, MD", coords: [-76.61, 39.29], tier: 1 },
+  { name: "Pittsburgh, PA", coords: [-79.99, 40.44], tier: 1 },
   { name: "Charlotte, NC", coords: [-80.84, 35.23], tier: 1 },
   { name: "Atlanta, GA", coords: [-84.39, 33.75], tier: 1 },
-  { name: "Nashville, TN", coords: [-86.78, 36.16], tier: 2 },
-  { name: "Jacksonville, FL", coords: [-81.66, 30.33], tier: 2 },
-  { name: "Memphis, TN", coords: [-90.05, 35.15], tier: 2 },
+  // Extendido: Nueva Inglaterra, Grandes Lagos, Medio Oeste y Sur.
+  { name: "Boston, MA", coords: [-71.06, 42.36], tier: 2 },
+  { name: "Cleveland, OH", coords: [-81.69, 41.5], tier: 2 },
   { name: "Detroit, MI", coords: [-83.05, 42.33], tier: 2 },
+  { name: "Columbus, OH", coords: [-83.0, 39.96], tier: 2 },
+  { name: "Indianapolis, IN", coords: [-86.16, 39.77], tier: 2 },
   { name: "Chicago, IL", coords: [-87.63, 41.88], tier: 2 },
+  { name: "Minneapolis, MN", coords: [-93.27, 44.98], tier: 2 },
+  { name: "St. Louis, MO", coords: [-90.2, 38.63], tier: 2 },
+  { name: "Nashville, TN", coords: [-86.78, 36.16], tier: 2 },
+  { name: "Memphis, TN", coords: [-90.05, 35.15], tier: 2 },
+  { name: "Jacksonville, FL", coords: [-81.66, 30.33], tier: 2 },
   { name: "Dallas, TX", coords: [-96.8, 32.78], tier: 2 },
 ] satisfies { name: string; coords: [number, number]; tier: 1 | 2 }[];
