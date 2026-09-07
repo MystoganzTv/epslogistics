@@ -203,7 +203,10 @@ export default function HomePage() {
                 to discuss your shipment.
               </p>
             </div>
-            <CoverageMap className="min-h-[330px] overflow-hidden rounded-2xl bg-abyss" />
+            <CoverageMap
+              labels={false}
+              className="overflow-hidden rounded-2xl bg-abyss"
+            />
           </div>
         </div>
       </section>

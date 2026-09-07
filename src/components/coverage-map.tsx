@@ -47,7 +47,14 @@ function declutter(items: { y: number }[]) {
   }
 }
 
-export function CoverageMap({ className }: { className?: string }) {
+export function CoverageMap({
+  className,
+  labels = true,
+}: {
+  className?: string;
+  /** En espacios pequenos las etiquetas aprietan: mejor el mapa limpio. */
+  labels?: boolean;
+}) {
   const ref = useRef<HTMLDivElement>(null);
   const [width, setWidth] = useState(DEFAULT_WIDTH);
 
@@ -63,15 +70,16 @@ export function CoverageMap({ className }: { className?: string }) {
   }, []);
 
   const w = Math.max(300, width);
-  const h = Math.max(300, Math.round(w * 0.62));
+  const h = Math.max(300, Math.round(w * 0.6));
   /** Debajo de este ancho las etiquetas no caben: se muestran solo las core. */
   const dense = w >= 620;
+  const showLabels = labels;
 
   const model = useMemo(() => {
     const projection = geoAlbersUsa().fitExtent(
       [
-        [14, 16],
-        [w - 14, h - 16],
+        [6, 8],
+        [w - 6, h - 8],
       ],
       US,
     );
@@ -98,7 +106,8 @@ export function CoverageMap({ className }: { className?: string }) {
 
     // Las etiquetas salen hacia fuera: a la izquierda si el destino esta al
     // oeste de Virginia, a la derecha si esta al este.
-    const labels = lanes
+    const cityLabels = lanes
+      .filter(() => showLabels)
       .filter((l) => dense || l.tier === 1)
       .map((l) => ({
         city: l.city,
@@ -108,14 +117,14 @@ export function CoverageMap({ className }: { className?: string }) {
         y: l.point[1] + 3.5,
       }));
 
-    declutter(labels.filter((l) => l.left));
-    declutter(labels.filter((l) => !l.left));
+    declutter(cityLabels.filter((l) => l.left));
+    declutter(cityLabels.filter((l) => !l.left));
 
     const fontSize = Math.max(11, Math.min(16, w * 0.026));
     const flip = va[0] + 13 + fontSize * 0.68 * 8 > w - 8;
 
-    return { outline, va, lanes, labels, fontSize, flip };
-  }, [w, h, dense]);
+    return { outline, va, lanes, labels: cityLabels, fontSize, flip };
+  }, [w, h, dense, showLabels]);
 
   const labelSize = Math.max(8.5, Math.min(11.5, w * 0.0165));
 
@@ -146,6 +155,7 @@ export function CoverageMap({ className }: { className?: string }) {
           </clipPath>
         </defs>
 
+        <rect width={w} height={h} fill="#071527" />
         <path d={model.outline} fill="#16304f" />
         <rect
           width={w}
