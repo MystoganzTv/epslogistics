@@ -1,13 +1,6 @@
-import Link from "next/link";
-import { Logo } from "@/components/brand/logo";
-import { Container } from "@/components/ui/container";
+import { redirect } from "next/navigation";
+import { Wordmark } from "@/components/brand/wordmark";
 import { createClient } from "@/lib/supabase/server";
-
-const links = [
-  { href: "/portal", label: "Overview" },
-  { href: "/portal/shipments", label: "Shipments" },
-  { href: "/portal/quotes", label: "Quotes" },
-];
 
 export default async function PortalLayout({
   children,
@@ -19,38 +12,34 @@ export default async function PortalLayout({
     data: { user },
   } = await supabase.auth.getUser();
 
+  // El middleware ya bloquea el acceso; esto cubre el caso de sesion caducada
+  // entre la comprobacion del middleware y el render.
+  if (!user) redirect("/login");
+
   return (
-    <div className="flex min-h-dvh flex-col">
-      <header className="border-b border-border">
-        <Container className="flex h-18 items-center justify-between gap-6 py-3">
+    <div className="flex min-h-dvh flex-col bg-canvas">
+      <header className="border-b border-line bg-white">
+        <div className="shell flex items-center justify-between gap-6 py-[13px]">
           <div className="flex items-center gap-8">
-            <Logo width={130} priority />
-            <nav className="hidden gap-6 text-sm font-medium sm:flex">
-              {links.map((l) => (
-                <Link
-                  key={l.href}
-                  href={l.href}
-                  className="opacity-70 hover:opacity-100"
-                >
-                  {l.label}
-                </Link>
-              ))}
-            </nav>
+            <Wordmark markWidth={44} priority />
+            <span className="hidden font-display text-[11.5px] font-bold uppercase tracking-[0.16em] text-faint sm:block">
+              Internal
+            </span>
           </div>
           <div className="flex items-center gap-4">
-            <span className="hidden text-sm opacity-60 sm:inline">
-              {user?.email}
+            <span className="hidden text-sm text-muted sm:inline">
+              {user.email}
             </span>
             <form action="/auth/signout" method="post">
               <button
                 type="submit"
-                className="rounded-brand border border-border px-3 py-1.5 text-sm font-medium hover:bg-surface"
+                className="cursor-pointer rounded-lg border border-hairline px-3 py-1.5 text-sm font-semibold text-ink transition-colors hover:bg-canvas"
               >
                 Sign out
               </button>
             </form>
           </div>
-        </Container>
+        </div>
       </header>
       <main className="flex-1 py-10">{children}</main>
     </div>

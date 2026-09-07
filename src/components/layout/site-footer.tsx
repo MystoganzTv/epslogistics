@@ -1,63 +1,112 @@
 import Link from "next/link";
-import { Logo } from "@/components/brand/logo";
-import { Container } from "@/components/ui/container";
-import { site } from "@/lib/site";
+import { Wordmark } from "@/components/brand/wordmark";
+import { Icon } from "@/components/ui/icon";
+import { nav, site } from "@/lib/site";
+
+function ColTitle({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="font-display text-[11.5px] font-bold uppercase tracking-[0.16em] text-[#5f7694]">
+      {children}
+    </div>
+  );
+}
+
+const footerLink =
+  "text-[14.5px] font-medium text-onDark-strong transition-colors hover:text-white";
 
 export function SiteFooter() {
-  return (
-    <footer className="mt-24 border-t border-border bg-surface">
-      <Container className="grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-4">
-        <div className="lg:col-span-2">
-          <Logo width={160} />
-          <p className="mt-4 max-w-sm text-sm leading-relaxed opacity-70">
-            {site.description}
-          </p>
-        </div>
+  const socials = site.socials.filter((s) => /^https?:\/\//i.test(s.href));
 
-        <div>
-          <h4 className="text-xs font-semibold uppercase tracking-widest opacity-50">
-            Company
-          </h4>
-          <ul className="mt-4 space-y-2.5 text-sm">
-            {site.nav.map((item) => (
-              <li key={item.href}>
-                <Link
-                  href={item.href}
-                  className="opacity-70 transition-opacity hover:opacity-100"
-                >
+  return (
+    <footer className="bg-deep text-white">
+      <div className="shell pb-[30px] pt-14">
+        <div className="grid gap-9 sm:grid-cols-2 lg:grid-cols-4">
+          <div>
+            <Wordmark tone="light" markWidth={48} />
+            <p className="mt-5 font-display text-[15px] font-bold tracking-[-0.01em] text-brand-soft">
+              {site.tagline}.
+            </p>
+            <p className="mt-3.5 text-sm leading-[1.6] text-onDark-soft">
+              {site.region}
+              <br />
+              {site.regionSub}
+            </p>
+          </div>
+
+          <div>
+            <ColTitle>Company</ColTitle>
+            <div className="mt-4 flex flex-col gap-[11px]">
+              {nav.map((item) => (
+                <Link key={item.href} href={item.href} className={footerLink}>
                   {item.label}
                 </Link>
-              </li>
-            ))}
-          </ul>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <ColTitle>Get in touch</ColTitle>
+            <div className="mt-4 flex flex-col gap-[11px]">
+              <Link href="/quote" className={footerLink}>
+                Request a Quote
+              </Link>
+              <a href={site.phoneHref} className={footerLink}>
+                {site.phone}
+              </a>
+              <a href={site.emailHref} className={`${footerLink} break-words`}>
+                {site.email}
+              </a>
+            </div>
+
+            {socials.length > 0 && (
+              <div className="mt-5 flex gap-2.5">
+                {socials.map((s) => (
+                  <a
+                    key={s.name}
+                    href={s.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={s.name}
+                    className="flex size-[38px] items-center justify-center rounded-[9px] border border-white/20 transition-colors hover:border-white hover:bg-white/10"
+                  >
+                    <Icon name={s.icon} size={18} strokeWidth={1.7} />
+                  </a>
+                ))}
+              </div>
+            )}
+          </div>
+
+          <div>
+            <ColTitle>Authority &amp; legal</ColTitle>
+            <div className="mt-4 flex flex-col gap-2.5">
+              <span className="font-display text-[14.5px] font-bold tracking-[0.04em]">
+                USDOT #{site.usdot}
+              </span>
+              <span className="font-display text-[14.5px] font-bold tracking-[0.04em]">
+                MC #{site.mc}
+              </span>
+              <span className="text-[13.5px] leading-[1.55] text-onDark-soft">
+                Owner-operated carrier running under its own authority. Not a
+                broker or dispatch service.
+              </span>
+            </div>
+            <div className="mt-[18px] flex flex-col gap-[11px]">
+              <Link href="/privacy" className={`${footerLink} text-sm`}>
+                Privacy Policy
+              </Link>
+              <Link href="/terms" className={`${footerLink} text-sm`}>
+                Terms
+              </Link>
+            </div>
+          </div>
         </div>
 
-        <div>
-          <h4 className="text-xs font-semibold uppercase tracking-widest opacity-50">
-            Clients
-          </h4>
-          <ul className="mt-4 space-y-2.5 text-sm">
-            <li>
-              <Link href="/login" className="opacity-70 hover:opacity-100">
-                Client portal
-              </Link>
-            </li>
-            <li>
-              <Link href="/contact" className="opacity-70 hover:opacity-100">
-                Request a quote
-              </Link>
-            </li>
-          </ul>
-        </div>
-      </Container>
-
-      <div className="border-t border-border">
-        <Container className="flex flex-col gap-2 py-6 text-xs opacity-60 sm:flex-row sm:items-center sm:justify-between">
-          <p>
+        <div className="mt-10 flex flex-wrap items-center justify-between gap-3 border-t border-white/10 pt-[22px] text-[13px] text-[#7a8da6]">
+          <span>
             &copy; {new Date().getFullYear()} {site.name}. All rights reserved.
-          </p>
-          <p className="uppercase tracking-widest">{site.tagline}</p>
-        </Container>
+          </span>
+          <span>Virginia box truck &amp; regional freight transportation.</span>
+        </div>
       </div>
     </footer>
   );

@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# El export original del canvas de Claude Design (11 MB) se queda en disco,
+# fuera de git. El .dc.html si se versiona como referencia del diseno.
+design/*.zip

@@ -1,69 +1,143 @@
 @import "tailwindcss";
 
 @theme {
-  /* Marca EPS Logistics */
-  --color-navy-50: #eef2fb;
-  --color-navy-100: #d6dff4;
-  --color-navy-200: #adbde8;
-  --color-navy-300: #7f96d8;
-  --color-navy-400: #4f6ac0;
-  --color-navy-500: #2c469b;
-  --color-navy-600: #17307c;
-  --color-navy-700: #0c2168;
-  --color-navy-800: #061c5c;
-  --color-navy-900: #021e56;
-  --color-navy-950: #01102f;
+  /* ---- Marca EPS Logistics ---- */
+  --color-ink: #0a1a2f;        /* texto principal y secciones oscuras */
+  --color-abyss: #071527;      /* hero oscuro */
+  --color-deep: #061223;       /* footer */
+  --color-brand: #1668e3;      /* azul primario */
+  --color-brand-dark: #0f57c4; /* hover del primario */
+  --color-brand-bright: #3b8bff;
+  --color-brand-soft: #5c9bff; /* eyebrow sobre oscuro */
+  --color-brand-pale: #7fb2ff;
 
-  --color-electric-50: #e8f0ff;
-  --color-electric-100: #d0e1ff;
-  --color-electric-200: #a3c4ff;
-  --color-electric-300: #6fa1ff;
-  --color-electric-400: #3a7cff;
-  --color-electric-500: #0061fe;
-  --color-electric-600: #004ecb;
-  --color-electric-700: #003c9c;
-  --color-electric-800: #002b70;
-  --color-electric-900: #001c4a;
+  --color-muted: #5b6b80;      /* parrafo sobre claro */
+  --color-muted-strong: #4a5a70;
+  --color-slate: #3a4a5e;      /* labels de formulario */
+  --color-faint: #7c8aa0;
 
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --color-onDark: #b7c6da;     /* parrafo sobre oscuro */
+  --color-onDark-strong: #c6d3e4;
+  --color-onDark-soft: #8fa8c6;
 
-  --radius-brand: 0.625rem;
+  --color-line: #e5eaf2;
+  --color-line-soft: #eef1f6;
+  --color-line-header: #e7ecf3;
+  --color-hairline: #dce3ec;
+  --color-tint: #f4f8fe;       /* callouts azules */
+  --color-tint-line: #d9e6fa;
+  --color-canvas: #fafbfd;     /* secciones off-white */
+  --color-form: #f7f9fc;
+  --color-icon-tile: #eef4fe;
+
+  --color-danger: #c0392b;
+  --color-danger-line: #f0c7c2;
+  --color-danger-bg: #fdf2f1;
+  --color-ok: #1d8a44;
+
+  --font-display: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-script: var(--font-caveat), ui-serif, cursive;
 }
 
-:root {
-  --background: #ffffff;
-  --foreground: var(--color-navy-900);
-  --surface: var(--color-navy-50);
-  --border: #e2e8f5;
-}
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #05091a;
-    --foreground: #eef2fb;
-    --surface: #0a1330;
-    --border: #16224a;
+  body {
+    background: #fff;
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background: var(--color-brand);
+    color: #fff;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-brand);
+    outline-offset: 3px;
+    border-radius: 4px;
   }
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-surface: var(--surface);
-  --color-border: var(--border);
+@layer utilities {
+  /* Contenedor del canvas: 1240px con 22px de padding lateral */
+  .shell {
+    width: 100%;
+    max-width: 1240px;
+    margin-inline: auto;
+    padding-inline: 22px;
+  }
+
+  /* Eyebrow: la etiqueta pequena en mayusculas sobre cada seccion */
+  .eyebrow {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 12.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .display {
+    font-family: var(--font-display);
+    font-weight: 900;
+    letter-spacing: -0.028em;
+    line-height: 1.1;
+    text-wrap: balance;
+  }
 }
 
-* {
-  border-color: var(--border);
-}
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes eps-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  -webkit-font-smoothing: antialiased;
-}
+  @keyframes eps-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
 
-::selection {
-  background: var(--color-electric-500);
-  color: #fff;
+  @keyframes eps-dash {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  @keyframes eps-pulse {
+    0% {
+      r: 5;
+      opacity: 0.75;
+    }
+    100% {
+      r: 20;
+      opacity: 0;
+    }
+  }
+
+  .animate-eps-up {
+    animation: eps-up 0.7s ease both;
+  }
+
+  .animate-eps-in {
+    animation: eps-in 0.9s ease 0.15s both;
+  }
+
+  .animate-eps-enter {
+    animation: eps-up 0.5s ease both;
+  }
 }

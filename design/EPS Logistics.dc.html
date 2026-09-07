@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>EPS Logistics | Virginia Freight &amp; Box Truck Transportation</title>
+<meta name="description" content="EPS Logistics is a Virginia-based, owner-operated box truck carrier (USDOT #6997514 / MC #66625517) moving freight outbound and inbound across the Mid-Atlantic, Central and Southern United States. Local and regional delivery, dedicated routes and long-distance freight.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="EPS Logistics | Virginia Freight &amp; Box Truck Transportation">
+<meta property="og:description" content="Reliable Freight. Real Solutions. Every Mile. Virginia-based transportation solutions serving businesses across the Mid-Atlantic, Central and Southern United States.">
+<meta property="og:site_name" content="EPS Logistics">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Manrope:wght@400;500;600;700&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
+<script src="https://unpkg.com/d3@7.9.0/dist/d3.min.js" integrity="sha384-CjloA8y00+1SDAUkjs099PVfnY2KmDC2BZnws9kh8D/lX1s46w6EPhpXdqMfjK6i" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/topojson-client@3.1.0/dist/topojson-client.min.js" integrity="sha384-Ukv1p/xTma6P4/2bY5KzWBw+ydSpXmhCMtyciIQVDJ1RmOxtCYNMF1uXT9T63H67" crossorigin="anonymous"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"MovingCompany","name":"EPS Logistics","slogan":"Delivering Opportunities Every Mile","description":"Virginia-based, owner-operated box truck carrier running under its own USDOT and MC authority. Local and regional delivery, dedicated routes and long-distance freight moving outbound from and inbound to Virginia across the Mid-Atlantic, Central and Southern United States. A carrier, not a broker or dispatch service.","address":{"@type":"PostalAddress","addressRegion":"VA","addressCountry":"US"},"identifier":[{"@type":"PropertyValue","name":"USDOT","value":"6997514"},{"@type":"PropertyValue","name":"MC","value":"66625517"}],"areaServed":[{"@type":"State","name":"Virginia"},{"@type":"Place","name":"Mid-Atlantic United States"},{"@type":"Place","name":"Southern United States"},{"@type":"Place","name":"Central United States"}],"knowsAbout":["box truck freight","regional freight transportation","dedicated freight routes","last-mile business delivery"]}
+</script>
+<style>
+* { box-sizing: border-box; }
+body { margin: 0; font-family: Manrope, system-ui, sans-serif; background: #ffffff; -webkit-font-smoothing: antialiased; }
+a { color: #1668E3; text-decoration: none; }
+a:hover { color: #0F51BE; }
+input, select, textarea, button { font-family: inherit; }
+@keyframes epsUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }
+@keyframes epsIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes epsDash { to { stroke-dashoffset: 0; } }
+@keyframes epsPulse { 0% { r: 5; opacity: .75; } 100% { r: 20; opacity: 0; } }
+</style>
+</helmet>
+
+<div style="min-height:100vh;display:flex;flex-direction:column;background:#fff;color:#0A1A2F">
+
+  <header style="position:sticky;top:0;z-index:60;background:rgba(255,255,255,0.94);backdrop-filter:blur(14px);border-bottom:1px solid #E7ECF3">
+    <div style="max-width:1240px;margin:0 auto;padding:13px 22px;display:flex;align-items:center;gap:22px">
+      <a href="#" onClick="{{ goHome }}" style="display:flex;align-items:center;gap:13px;flex-shrink:0;color:inherit">
+        <image-slot id="eps-logo-mark" src="photos/eps-mark.png" shape="rect" fit="contain" style="width:50px;height:38px" placeholder="Logo"></image-slot>
+        <span style="display:flex;flex-direction:column;line-height:0.94">
+          <span style="font-family:Archivo;font-weight:900;font-size:23px;letter-spacing:-0.02em;color:#0A1A2F">EPS</span>
+          <span style="font-family:Archivo;font-weight:700;font-size:10px;letter-spacing:0.25em;color:#0A1A2F">LOGISTICS</span>
+        </span>
+        <span style="width:1px;height:32px;background:#DCE3EC"></span>
+        <span style="font-family:Archivo;font-weight:600;font-size:8px;letter-spacing:0.16em;line-height:1.5;color:#8493A8;text-transform:uppercase">Delivering<br>Opportunities<br>Every Mile</span>
+      </a>
+
+      <sc-if value="{{ isDesk }}" hint-placeholder-val="{{ true }}">
+        <nav style="margin-left:auto;display:flex;align-items:center;gap:2px">
+          <sc-for list="{{ nav }}" as="item" hint-placeholder-count="6">
+            <a href="#" onClick="{{ item.onClick }}" style="position:relative;padding:10px 13px;font-size:14.5px;font-weight:600;color:{{ item.color }}" style-hover="color:#1668E3">
+              {{ item.label }}
+              <span style="position:absolute;left:13px;right:13px;bottom:1px;height:2.5px;border-radius:2px;background:#1668E3;opacity:{{ item.active }}"></span>
+            </a>
+          </sc-for>
+        </nav>
+        <a href="#" onClick="{{ goQuote }}" style="display:flex;align-items:center;gap:9px;background:#0A1A2F;color:#fff;padding:13px 21px;border-radius:8px;font-family:Archivo;font-weight:700;font-size:14.5px;white-space:nowrap;transition:background .2s,transform .2s" style-hover="background:#1668E3;color:#fff;transform:translateY(-1px)">
+          Request a Quote
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"></path></svg>
+        </a>
+      </sc-if>
+
+      <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
+        <button onClick="{{ toggleMenu }}" aria-label="Open menu" style="margin-left:auto;display:flex;flex-direction:column;gap:5px;background:transparent;border:1px solid #DCE3EC;border-radius:8px;padding:11px 10px;cursor:pointer">
+          <span style="display:block;width:20px;height:2px;background:#0A1A2F"></span>
+          <span style="display:block;width:20px;height:2px;background:#0A1A2F"></span>
+          <span style="display:block;width:20px;height:2px;background:#0A1A2F"></span>
+        </button>
+      </sc-if>
+    </div>
+
+    <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+      <div style="border-top:1px solid #E7ECF3;background:#fff;padding:8px 22px 22px;animation:epsIn .2s ease">
+        <sc-for list="{{ nav }}" as="item" hint-placeholder-count="6">
+          <a href="#" onClick="{{ item.onClick }}" style="display:block;padding:14px 2px;font-family:Archivo;font-weight:700;font-size:17px;color:{{ item.color }};border-bottom:1px solid #F1F4F9">{{ item.label }}</a>
+        </sc-for>
+        <a href="#" onClick="{{ goQuote }}" style="margin-top:18px;display:flex;align-items:center;justify-content:center;gap:9px;background:#1668E3;color:#fff;padding:15px;border-radius:8px;font-family:Archivo;font-weight:700;font-size:15.5px">Request a Quote</a>
+      </div>
+    </sc-if>
+  </header>
+
+  <main style="flex:1">
+
+  <!-- ==================== HOME ==================== -->
+  <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+    <div>
+      <section style="position:relative;background:#071527;overflow:hidden">
+        <div style="position:absolute;inset:0;pointer-events:none;background:radial-gradient(1100px 620px at 78% 18%,rgba(22,104,227,0.22) 0%,rgba(7,21,39,0) 70%)"></div>
+        <div style="position:relative;width:100%;max-width:1240px;margin:0 auto;padding:70px 22px 78px;display:grid;grid-template-columns:repeat(auto-fit,minmax(420px,1fr));gap:44px;align-items:center">
+          <div style="animation:epsUp .7s ease both">
+            <h1 style="margin:0;font-family:Archivo;font-weight:900;font-size:clamp(36px,4.6vw,62px);line-height:1.04;letter-spacing:-0.032em;color:#fff;text-wrap:balance">
+              Reliable Freight.<br>Real Solutions.<br><span style="color:#3B8BFF">Every Mile.</span>
+            </h1>
+            <p style="margin:26px 0 0;max-width:500px;font-size:17.5px;line-height:1.62;color:#C6D3E4">
+              Virginia-based transportation solutions serving businesses across the Mid-Atlantic, Central, and Southern United States.
+            </p>
+            <div style="margin-top:34px;display:flex;flex-wrap:wrap;gap:14px">
+              <a href="#" onClick="{{ goQuote }}" style="display:flex;align-items:center;gap:10px;background:#1668E3;color:#fff;padding:16px 28px;border-radius:9px;font-family:Archivo;font-weight:700;font-size:16px;box-shadow:0 12px 30px rgba(22,104,227,0.34);transition:transform .2s,background .2s" style-hover="background:#0F57C4;color:#fff;transform:translateY(-2px)">
+                Request a Quote
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"></path></svg>
+              </a>
+              <a href="#" onClick="{{ goContact }}" style="display:flex;align-items:center;gap:10px;border:1.5px solid rgba(255,255,255,0.5);color:#fff;padding:16px 28px;border-radius:9px;font-family:Archivo;font-weight:700;font-size:16px;transition:background .2s,border-color .2s" style-hover="background:rgba(255,255,255,0.13);color:#fff;border-color:#fff">Contact Us</a>
+            </div>
+            <div style="margin-top:50px;display:grid;grid-template-columns:repeat(auto-fit,minmax(148px,1fr));gap:22px 16px;max-width:620px">
+              <sc-for list="{{ trust }}" as="t" hint-placeholder-count="4">
+                <div style="display:flex;align-items:center;gap:11px">
+                  <svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="#7FB2FF" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="{{ t.d }}"></path></svg>
+                  <span style="font-family:Archivo;font-weight:600;font-size:13.5px;line-height:1.28;color:#E7EEF8">{{ t.label }}</span>
+                </div>
+              </sc-for>
+            </div>
+            <div style="margin-top:30px;display:flex;flex-wrap:wrap;gap:10px">
+              <span style="border:1px solid rgba(255,255,255,0.28);border-radius:999px;padding:7px 15px;font-family:Archivo;font-weight:700;font-size:11.5px;letter-spacing:0.12em;color:#CFDDEF">USDOT #6997514</span>
+              <span style="border:1px solid rgba(255,255,255,0.28);border-radius:999px;padding:7px 15px;font-family:Archivo;font-weight:700;font-size:11.5px;letter-spacing:0.12em;color:#CFDDEF">MC #66625517</span>
+              <span style="border:1px solid rgba(127,178,255,0.55);background:rgba(22,104,227,0.16);border-radius:999px;padding:7px 15px;font-family:Archivo;font-weight:700;font-size:11.5px;letter-spacing:0.12em;color:#BFD9FF">OWNER-OPERATOR · OUR OWN AUTHORITY</span>
+            </div>
+          </div>
+          <div style="position:relative;min-height:430px;border-radius:20px;overflow:hidden;border:1px solid rgba(255,255,255,0.14);box-shadow:0 30px 70px rgba(0,0,0,0.42);animation:epsIn .9s ease .15s both">
+            <image-slot id="eps-hero-truck" src="photos/hero-truck.png" shape="rect" placeholder="Drop hero photo — box truck on a highway"></image-slot>
+            <div style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(6,20,38,0) 52%,rgba(6,20,38,0.62) 100%)"></div>
+            <div style="position:absolute;left:24px;bottom:20px;pointer-events:none">
+              <div style="font-family:Caveat;font-weight:600;font-size:31px;line-height:1.05;color:#fff">More Than Freight<br>— Progress.</div>
+              <svg width="128" height="14" viewBox="0 0 150 16" fill="none" style="display:block;margin-top:2px"><path d="M4 11C40 3 100 3 146 8" stroke="#3B8BFF" stroke-width="5" stroke-linecap="round"></path></svg>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section style="background:#FAFBFD;border-bottom:1px solid #EEF1F6">
+        <div style="max-width:1240px;margin:0 auto;padding:84px 22px">
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:30px;align-items:end">
+            <div>
+              <div style="font-family:Archivo;font-weight:700;font-size:12.5px;letter-spacing:0.18em;color:#1668E3;text-transform:uppercase">Our Services</div>
+              <h2 style="margin:14px 0 0;font-family:Archivo;font-weight:900;font-size:clamp(27px,3.5vw,39px);line-height:1.1;letter-spacing:-0.028em;color:#0A1A2F;text-wrap:balance">Transportation Solutions That Keep Your Business Moving</h2>
+            </div>
+            <div style="display:flex;flex-wrap:wrap;gap:24px;align-items:flex-end;justify-content:space-between">
+              <p style="margin:0;max-width:370px;font-size:15.5px;line-height:1.65;color:#5B6B80">From local Virginia deliveries to long-distance freight, we build transportation around how your business actually ships.</p>
+              <a href="#" onClick="{{ goServices }}" style="display:flex;align-items:center;gap:9px;border:1.5px solid #1668E3;color:#1668E3;padding:13px 21px;border-radius:8px;font-family:Archivo;font-weight:700;font-size:14.5px;white-space:nowrap;transition:background .2s,color .2s" style-hover="background:#1668E3;color:#fff">
+                View All Services
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"></path></svg>
+              </a>
+            </div>
+          </div>
+          <div style="margin-top:46px;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px">
+            <sc-for list="{{ servicesTop }}" as="s" hint-placeholder-count="4">
+              <div style="background:#fff;border:1px solid #E5EAF2;border-radius:14px;padding:26px 24px 28px;transition:transform .25s,box-shadow .25s,border-color .25s" style-hover="transform:translateY(-4px);box-shadow:0 18px 40px rgba(10,26,47,0.1);border-color:#C9D9F3">
+                <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#1668E3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="{{ s.d }}"></path></svg>
+                <h3 style="margin:20px 0 8px;font-family:Archivo;font-weight:700;font-size:17px;letter-spacing:-0.012em;color:#0A1A2F">{{ s.title }}</h3>
+                <p style="margin:0;font-size:14.5px;line-height:1.6;color:#5B6B80">{{ s.short }}</p>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </section>
+
+      <section style="position:relative;background:#071527;overflow:hidden">
+        <div style="position:absolute;inset:0;opacity:0.4">
+          <image-slot id="eps-why-bg" src="photos/road.png" shape="rect" placeholder="Drop an aerial highway photo"></image-slot>
+        </div>
+        <div style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(5,16,31,0.96) 0%,rgba(5,16,31,0.7) 55%,rgba(5,16,31,0.92) 100%)"></div>
+        <div style="position:relative;max-width:1240px;margin:0 auto;padding:84px 22px">
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:52px;align-items:start">
+            <div>
+              <div style="font-family:Archivo;font-weight:700;font-size:12.5px;letter-spacing:0.18em;color:#5C9BFF;text-transform:uppercase">Why Choose EPS</div>
+              <h2 style="margin:14px 0 38px;font-family:Archivo;font-weight:900;font-size:clamp(27px,3.5vw,39px);line-height:1.1;letter-spacing:-0.028em;color:#fff">A Transportation Partner You Can Count On.</h2>
+              <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(185px,1fr));gap:32px 24px">
+                <sc-for list="{{ values }}" as="v" hint-placeholder-count="4">
+                  <div>
+                    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="{{ v.d }}"></path></svg>
+                    <h3 style="margin:16px 0 7px;font-family:Archivo;font-weight:700;font-size:16px;color:#fff">{{ v.title }}</h3>
+                    <p style="margin:0;font-size:14px;line-height:1.58;color:#B7C6DA">{{ v.body }}</p>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+            <div style="border-left:1px solid rgba(255,255,255,0.18);padding-left:36px">
+              <p style="margin:0;font-family:Archivo;font-style:italic;font-weight:500;font-size:clamp(21px,2.5vw,28px);line-height:1.36;letter-spacing:-0.02em;color:#fff">“Small enough to care. Professional enough to deliver. Built to grow.”</p>
+              <div style="margin-top:22px;font-family:Archivo;font-weight:700;font-size:12.5px;letter-spacing:0.18em;color:#8FA8C6;text-transform:uppercase">— EPS Logistics</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section style="background:#fff">
+        <div style="max-width:1240px;margin:0 auto;padding:84px 22px">
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:46px;align-items:center">
+            <div>
+              <div style="font-family:Archivo;font-weight:700;font-size:12.5px;letter-spacing:0.18em;color:#1668E3;text-transform:uppercase">Coverage</div>
+              <h2 style="margin:14px 0 18px;font-family:Archivo;font-weight:900;font-size:clamp(27px,3.5vw,39px);line-height:1.1;letter-spacing:-0.028em;color:#0A1A2F;text-wrap:balance">Based in Virginia. Built to Move Beyond It.</h2>
+              <p style="margin:0 0 22px;font-size:16px;line-height:1.66;color:#5B6B80">From local Virginia deliveries to long-distance freight across the Central and Southern United States, EPS Logistics connects businesses with dependable transportation solutions — <strong style="color:#0A1A2F;font-weight:700">freight moving out of Virginia and freight coming back in</strong>.</p>
+              <div style="display:flex;flex-direction:column;gap:11px;margin-bottom:24px">
+                <sc-for list="{{ legend }}" as="l" hint-placeholder-count="3">
+                  <div style="display:flex;align-items:center;gap:11px">
+                    <span style="width:13px;height:13px;border-radius:4px;flex-shrink:0;background:{{ l.color }}"></span>
+                    <span style="font-size:14.5px;font-weight:600;color:#3A4A5E">{{ l.label }}</span>
+                  </div>
+                </sc-for>
+              </div>
+              <div style="background:#F4F8FE;border:1px solid #D9E6FA;border-radius:12px;padding:17px 19px;font-size:14.5px;line-height:1.6;color:#2B3B50">
+                Have a destination outside our typical service area? <a href="#" onClick="{{ goContact }}" style="font-weight:700">Contact us</a> to discuss your shipment.
+              </div>
+            </div>
+            <div ref="{{ mapRef }}" style="min-height:330px;background:#071527;border-radius:16px;overflow:hidden"></div>
+          </div>
+        </div>
+      </section>
+
+      <section style="background:#0A1A2F">
+        <div style="max-width:1240px;margin:0 auto;padding:78px 22px">
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:46px;align-items:center">
+            <div>
+              <div style="font-family:Archivo;font-weight:700;font-size:12.5px;letter-spacing:0.18em;color:#5C9BFF;text-transform:uppercase">Business Partners</div>
+              <h2 style="margin:14px 0 16px;font-family:Archivo;font-weight:900;font-size:clamp(25px,3.1vw,35px);line-height:1.12;letter-spacing:-0.028em;color:#fff">Looking for a Reliable Transportation Partner?</h2>
+              <p style="margin:0 0 28px;max-width:470px;font-size:16px;line-height:1.66;color:#B7C6DA">EPS Logistics works with businesses and logistics partners that need dependable transportation capacity without unnecessary complexity. We work directly as the carrier on the load — no brokering, no dispatch layer, no handoffs.</p>
+              <a href="#" onClick="{{ goQuote }}" style="display:inline-flex;align-items:center;gap:10px;background:#1668E3;color:#fff;padding:15px 26px;border-radius:9px;font-family:Archivo;font-weight:700;font-size:15.5px;transition:background .2s,transform .2s" style-hover="background:#0F57C4;color:#fff;transform:translateY(-2px)">
+                Partner With EPS
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"></path></svg>
+              </a>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(138px,1fr));gap:11px">
+              <sc-for list="{{ partners }}" as="p" hint-placeholder-count="7">
+                <div style="border:1px solid rgba(255,255,255,0.15);border-radius:10px;padding:16px 14px;font-family:Archivo;font-weight:600;font-size:14px;color:#DCE6F3;transition:background .2s,border-color .2s" style-hover="background:rgba(255,255,255,0.07);border-color:rgba(255,255,255,0.34)">{{ p }}</div>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section style="background:#FAFBFD;border-top:1px solid #EEF1F6">
+        <div style="max-width:1240px;margin:0 auto;padding:62px 22px">
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:36px;align-items:center">
+            <div>
+              <div style="font-family:Archivo;font-weight:700;font-size:12.5px;letter-spacing:0.18em;color:#1668E3;text-transform:uppercase">Ready to Move Forward?</div>
+              <h2 style="margin:12px 0 8px;font-family:Archivo;font-weight:900;font-size:clamp(25px,3vw,34px);line-height:1.12;letter-spacing:-0.028em;color:#0A1A2F">Let’s Get Your Freight Moving.</h2>
+              <p style="margin:0;font-size:15.5px;line-height:1.6;color:#5B6B80">Request a quote or get in touch with our team today.</p>
+            </div>
+            <div style="display:flex;flex-wrap:wrap;gap:13px">
+              <a href="#" onClick="{{ goQuote }}" style="display:flex;align-items:center;gap:9px;background:#1668E3;color:#fff;padding:15px 25px;border-radius:9px;font-family:Archivo;font-weight:700;font-size:15.5px;transition:background .2s" style-hover="background:#0F57C4;color:#fff">
+                Request a Quote
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"></path></svg>
+              </a>
+              <a href="#" onClick="{{ goContact }}" style="display:flex;align-items:center;gap:9px;border:1.5px solid #C9D3E0;color:#0A1A2F;padding:15px 25px;border-radius:9px;font-family:Archivo;font-weight:700;font-size:15.5px;transition:border-color .2s,background .2s" style-hover="border-color:#0A1A2F;background:#fff;color:#0A1A2F">Contact Us</a>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:14px">
+              <sc-for list="{{ contactLines }}" as="c" hint-placeholder-count="3">
+                <a href="{{ c.href }}" onClick="{{ c.onClick }}" style="display:flex;align-items:flex-start;gap:12px;color:#0A1A2F" style-hover="color:#1668E3">
+                  <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px"><path d="{{ c.d }}"></path></svg>
+                  <div>
+                    <div style="font-size:15px;font-weight:600;color:inherit">{{ c.main }}</div>
+                    <div style="font-size:13.5px;color:#7C8AA0">{{ c.sub }}</div>
+                  </div>
+                </a>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </sc-if>
+
+  <!-- ==================== SERVICES ==================== -->
+  <sc-if value="{{ isServices }}" hint-placeholder-val="{{ false }}">
+    <div>
+      <section style="background:#0A1A2F">
+        <div style="max-width:1240px;margin:0 auto;padding:74px 22px 66px;animation:epsUp .5s ease both">
+          <div style="font-family:Archivo;font-weight:700;font-size:12.5px;letter-spacing:0.18em;color:#5C9BFF;text-transform:uppercase">Services</div>
+          <h1 style="margin:14px 0 16px;max-width:840px;font-family:Archivo;font-weight:900;font-size:clamp(31px,4.6vw,52px);line-height:1.06;letter-spacing:-0.032em;color:#fff;text-wrap:balance">Transportation Solutions That Keep Your Business Moving</h1>
+          <p style="margin:0;max-width:640px;font-size:17px;line-height:1.65;color:#B7C6DA">Box truck freight built around real schedules, real lanes, and real communication — throughout Virginia and across the Mid-Atlantic, Central, and Southern United States, outbound and inbound. We move the freight ourselves, under our own authority.</p>
+        </div>
+      </section>
+      <section style="background:#fff">
+        <div style="max-width:1240px;margin:0 auto;padding:70px 22px 84px">
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:20px">
+            <sc-for list="{{ servicesAll }}" as="s" hint-placeholder-count="6">
+              <div style="background:#fff;border:1px solid #E5EAF2;border-radius:16px;padding:30px 28px 32px;transition:transform .25s,box-shadow .25s,border-color .25s" style-hover="transform:translateY(-5px);box-shadow:0 22px 46px rgba(10,26,47,0.1);border-color:#C9D9F3">
+                <div style="width:52px;height:52px;border-radius:12px;background:#EEF4FE;display:flex;align-items:center;justify-content:center">
+                  <svg width="27" height="27" viewBox="0 0 24 24" fill="none" stroke="#1668E3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="{{ s.d }}"></path></svg>
+                </div>
+                <h2 style="margin:22px 0 10px;font-family:Archivo;font-weight:800;font-size:20px;letter-spacing:-0.02em;color:#0A1A2F">{{ s.title }}</h2>
+                <p style="margin:0;font-size:15px;line-height:1.62;color:#5B6B80">{{ s.body }}</p>
+              </div>
+            </sc-for>
+          </div>
+          <div style="margin-top:30px;background:#FAFBFD;border:1px solid #E5EAF2;border-radius:14px;padding:22px 24px;font-size:14.5px;line-height:1.6;color:#5B6B80">
+            Need something that isn’t listed here? Equipment and lanes are added as the fleet grows — <a href="#" onClick="{{ goContact }}" style="font-weight:700">tell us what you ship</a> and we’ll confirm what we can cover.
+          </div>
+        </div>
+      </section>
+      <div>
+        <section style="background:#0A1A2F">
+          <div style="max-width:1240px;margin:0 auto;padding:66px 22px;display:flex;flex-wrap:wrap;gap:26px;align-items:center;justify-content:space-between">
+            <h2 style="margin:0;max-width:560px;font-family:Archivo;font-weight:900;font-size:clamp(24px,3vw,33px);line-height:1.14;letter-spacing:-0.028em;color:#fff">Tell us about your freight and we’ll get you a quote.</h2>
+            <a href="#" onClick="{{ goQuote }}" style="display:flex;align-items:center;gap:10px;background:#1668E3;color:#fff;padding:16px 27px;border-radius:9px;font-family:Archivo;font-weight:700;font-size:15.5px;transition:background .2s,transform .2s" style-hover="background:#0F57C4;color:#fff;transform:translateY(-2px)">
+              Request a Quote
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"></path></svg>
+            </a>
+          </div>
+        </section>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- ==================== COVERAGE ==================== -->
+  <sc-if value="{{ isCoverage }}" hint-placeholder-val="{{ false }}">
+    <div>
+      <section style="background:#0A1A2F">
+        <div style="max-width:1240px;margin:0 auto;padding:74px 22px 60px;animation:epsUp .5s ease both">
+          <div style="font-family:Archivo;font-weight:700;font-size:12.5px;letter-spacing:0.18em;color:#5C9BFF;text-transform:uppercase">Coverage</div>
+          <h1 style="margin:14px 0 16px;max-width:760px;font-family:Archivo;font-weight:900;font-size:clamp(31px,4.6vw,52px);line-height:1.06;letter-spacing:-0.032em;color:#fff;text-wrap:balance">Based in Virginia. Built to Move Beyond It.</h1>
+          <p style="margin:0;max-width:660px;font-size:17px;line-height:1.65;color:#B7C6DA">From local Virginia deliveries to long-distance freight across the Central and Southern United States, EPS Logistics connects businesses with dependable transportation solutions. Lanes run <strong style="color:#fff;font-weight:700">in both directions</strong> — outbound from Virginia and inbound back home.</p>
+        </div>
+        <div style="max-width:1240px;margin:0 auto;padding:0 22px 74px">
+          <div ref="{{ mapRef }}" style="min-height:380px;background:#08182C;border:1px solid rgba(255,255,255,0.12);border-radius:18px;overflow:hidden"></div>
+          <div style="margin-top:22px;display:flex;flex-wrap:wrap;gap:14px 32px">
+            <sc-for list="{{ legend }}" as="l" hint-placeholder-count="3">
+              <div style="display:flex;align-items:center;gap:10px">
+                <span style="width:13px;height:13px;border-radius:4px;flex-shrink:0;background:{{ l.color }}"></span>
+                <span style="font-size:14px;font-weight:600;color:#C6D3E4">{{ l.label }}</span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </section>
+      <section style="background:#fff">
+        <div style="max-width:1240px;margin:0 auto;padding:76px 22px">
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px">
+            <sc-for list="{{ regions }}" as="r" hint-placeholder-count="4">
+              <div style="border:1px solid #E5EAF2;border-radius:14px;padding:26px 24px;transition:border-color .25s,box-shadow .25s" style-hover="border-color:#C9D9F3;box-shadow:0 16px 36px rgba(10,26,47,0.08)">
+                <div style="font-family:Archivo;font-weight:700;font-size:11.5px;letter-spacing:0.16em;color:#1668E3;text-transform:uppercase">{{ r.tag }}</div>
+                <h2 style="margin:12px 0 10px;font-family:Archivo;font-weight:800;font-size:19px;letter-spacing:-0.018em;color:#0A1A2F">{{ r.title }}</h2>
+                <p style="margin:0;font-size:14.5px;line-height:1.6;color:#5B6B80">{{ r.body }}</p>
+              </div>
+            </sc-for>
+          </div>
+          <div style="margin-top:28px;background:#F4F8FE;border:1px solid #D9E6FA;border-radius:14px;padding:24px 26px;display:flex;flex-wrap:wrap;gap:18px;align-items:center;justify-content:space-between">
+            <p style="margin:0;max-width:620px;font-size:15.5px;line-height:1.6;color:#2B3B50">Have a destination outside our typical service area? Contact us to discuss your shipment — lanes are reviewed case by case.</p>
+            <a href="#" onClick="{{ goContact }}" style="display:flex;align-items:center;gap:9px;background:#0A1A2F;color:#fff;padding:14px 23px;border-radius:8px;font-family:Archivo;font-weight:700;font-size:14.5px;transition:background .2s" style-hover="background:#1668E3;color:#fff">Contact EPS Logistics</a>
+          </div>
+        </div>
+      </section>
+    </div>
+  </sc-if>
+
+  <!-- ==================== ABOUT ==================== -->
+  <sc-if value="{{ isAbout }}" hint-placeholder-val="{{ false }}">
+    <div>
+      <section style="background:#0A1A2F">
+        <div style="max-width:1240px;margin:0 auto;padding:74px 22px 66px;animation:epsUp .5s ease both">
+          <div style="font-family:Archivo;font-weight:700;font-size:12.5px;letter-spacing:0.18em;color:#5C9BFF;text-transform:uppercase">About</div>
+          <h1 style="margin:14px 0 16px;max-width:800px;font-family:Archivo;font-weight:900;font-size:clamp(31px,4.6vw,52px);line-height:1.06;letter-spacing:-0.032em;color:#fff;text-wrap:balance">Delivering Opportunities Every Mile.</h1>
+          <p style="margin:0;max-width:640px;font-size:17px;line-height:1.65;color:#B7C6DA">EPS Logistics is a Virginia-based freight transportation company built on a simple idea: shippers deserve a carrier that answers the phone, shows up on time, and treats every load like it matters.</p>
+        </div>
+      </section>
+      <section style="background:#fff">
+        <div style="max-width:1240px;margin:0 auto;padding:76px 22px">
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:48px;align-items:start">
+            <div>
+              <h2 style="margin:0 0 18px;font-family:Archivo;font-weight:900;font-size:clamp(24px,3vw,32px);line-height:1.14;letter-spacing:-0.028em;color:#0A1A2F">Who we are</h2>
+              <p style="margin:0 0 16px;font-size:16px;line-height:1.7;color:#4A5A70">EPS Logistics is an owner-operated carrier running under its own USDOT and MC authority. That means the person you get on the phone is the person moving your freight — box truck transportation for palletized freight, commercial goods, retail products, equipment, and general cargo.</p>
+              <p style="margin:0 0 16px;font-size:16px;line-height:1.7;color:#4A5A70">We haul out of Virginia into the Mid-Atlantic, Central, and Southern United States, and we haul back in — inbound freight to Virginia is just as much our lane as outbound.</p>
+              <p style="margin:0 0 20px;font-size:16px;line-height:1.7;color:#4A5A70">We’re intentionally focused. Instead of promising everything, we do a defined set of transportation work well — and equipment and lanes grow as our customers’ needs grow.</p>
+              <div style="background:#F4F8FE;border:1px solid #D9E6FA;border-radius:12px;padding:18px 20px">
+                <div style="font-family:Archivo;font-weight:700;font-size:11.5px;letter-spacing:0.16em;color:#1668E3;text-transform:uppercase">What we are — and aren’t</div>
+                <p style="margin:10px 0 0;font-size:15px;line-height:1.65;color:#2B3B50">We are the <strong style="font-weight:700">carrier</strong>: our truck, our authority, our driver. We are not a broker or a dispatch service, and we don’t re-broker freight to anyone else. When you book EPS, EPS moves the load.</p>
+              </div>
+              <p style="margin:20px 0 0;font-family:Archivo;font-weight:700;font-size:16px;line-height:1.5;letter-spacing:-0.015em;color:#0A1A2F">Small enough to care. Professional enough to deliver. Built to grow.</p>
+              <div style="margin-top:28px;display:flex;flex-wrap:wrap;gap:10px">
+                <span style="border:1px solid #DCE3EC;border-radius:999px;padding:9px 17px;font-family:Archivo;font-weight:700;font-size:12px;letter-spacing:0.1em;color:#0A1A2F">USDOT #6997514</span>
+                <span style="border:1px solid #DCE3EC;border-radius:999px;padding:9px 17px;font-family:Archivo;font-weight:700;font-size:12px;letter-spacing:0.1em;color:#0A1A2F">MC #66625517</span>
+                <span style="border:1px solid #DCE3EC;border-radius:999px;padding:9px 17px;font-family:Archivo;font-weight:700;font-size:12px;letter-spacing:0.1em;color:#0A1A2F">Virginia, USA</span>
+                <span style="border:1px solid #C9D9F3;background:#F4F8FE;border-radius:999px;padding:9px 17px;font-family:Archivo;font-weight:700;font-size:12px;letter-spacing:0.1em;color:#1668E3">Owner-operator</span>
+              </div>
+            </div>
+            <div style="border-radius:18px;overflow:hidden;height:380px;position:relative;background:#0A1A2F">
+              <image-slot id="eps-about-photo" src="photos/truck-portrait.png" shape="rect" placeholder="Drop a photo of the truck or driver"></image-slot>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section style="background:#FAFBFD;border-top:1px solid #EEF1F6">
+        <div style="max-width:1240px;margin:0 auto;padding:76px 22px">
+          <h2 style="margin:0 0 34px;font-family:Archivo;font-weight:900;font-size:clamp(24px,3vw,32px);line-height:1.14;letter-spacing:-0.028em;color:#0A1A2F">How we work</h2>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px">
+            <sc-for list="{{ howWeWork }}" as="h" hint-placeholder-count="4">
+              <div style="background:#fff;border:1px solid #E5EAF2;border-radius:14px;padding:26px 24px">
+                <div style="font-family:Archivo;font-weight:900;font-size:26px;letter-spacing:-0.02em;color:#C9D9F3">{{ h.n }}</div>
+                <h3 style="margin:14px 0 8px;font-family:Archivo;font-weight:700;font-size:17px;color:#0A1A2F">{{ h.title }}</h3>
+                <p style="margin:0;font-size:14.5px;line-height:1.6;color:#5B6B80">{{ h.body }}</p>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </section>
+    </div>
+  </sc-if>
+
+  <!-- ==================== WHY EPS ==================== -->
+  <sc-if value="{{ isWhy }}" hint-placeholder-val="{{ false }}">
+    <div>
+      <section style="position:relative;background:#071527;overflow:hidden">
+        <div style="position:absolute;inset:0;opacity:0.38">
+          <image-slot id="eps-why-hero" src="photos/road.png" shape="rect" placeholder="Drop a highway photo"></image-slot>
+        </div>
+        <div style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(95deg,rgba(5,16,31,0.96) 0%,rgba(5,16,31,0.78) 60%,rgba(5,16,31,0.9) 100%)"></div>
+        <div style="position:relative;max-width:1240px;margin:0 auto;padding:74px 22px 66px;animation:epsUp .5s ease both">
+          <div style="font-family:Archivo;font-weight:700;font-size:12.5px;letter-spacing:0.18em;color:#5C9BFF;text-transform:uppercase">Why EPS Logistics</div>
+          <h1 style="margin:14px 0 16px;max-width:800px;font-family:Archivo;font-weight:900;font-size:clamp(31px,4.6vw,52px);line-height:1.06;letter-spacing:-0.032em;color:#fff;text-wrap:balance">A Transportation Partner You Can Count On</h1>
+          <p style="margin:0;max-width:620px;font-size:17px;line-height:1.65;color:#B7C6DA">Freight schedules matter. Our job is to make sure yours holds — with dependable pickups, deliveries, and communication on every mile.</p>
+        </div>
+      </section>
+      <section style="background:#fff">
+        <div style="max-width:1240px;margin:0 auto;padding:76px 22px">
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:20px">
+            <sc-for list="{{ values }}" as="v" hint-placeholder-count="4">
+              <div style="border:1px solid #E5EAF2;border-radius:16px;padding:30px 28px;transition:transform .25s,box-shadow .25s,border-color .25s" style-hover="transform:translateY(-5px);box-shadow:0 22px 46px rgba(10,26,47,0.1);border-color:#C9D9F3">
+                <div style="width:52px;height:52px;border-radius:12px;background:#EEF4FE;display:flex;align-items:center;justify-content:center">
+                  <svg width="27" height="27" viewBox="0 0 24 24" fill="none" stroke="#1668E3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="{{ v.d }}"></path></svg>
+                </div>
+                <h2 style="margin:22px 0 10px;font-family:Archivo;font-weight:800;font-size:20px;letter-spacing:-0.02em;color:#0A1A2F">{{ v.title }}</h2>
+                <p style="margin:0;font-size:15px;line-height:1.62;color:#5B6B80">{{ v.long }}</p>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </section>
+      <section style="background:#0A1A2F">
+        <div style="max-width:1240px;margin:0 auto;padding:58px 22px;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:34px">
+          <div>
+            <div style="font-family:Archivo;font-weight:900;font-size:clamp(22px,2.6vw,29px);line-height:1.16;letter-spacing:-0.028em;color:#fff">One truck. One point of contact.</div>
+            <p style="margin:12px 0 0;font-size:15.5px;line-height:1.65;color:#B7C6DA">EPS Logistics is owner-operated. The person quoting your load is the person driving it, so nothing gets lost between a dispatcher, a broker, and a driver.</p>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:16px">
+            <div style="display:flex;gap:12px;align-items:flex-start">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5C9BFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:3px"><path d="M20 6.5L9.5 17 4 11.6"></path></svg>
+              <span style="font-size:15px;line-height:1.6;color:#DCE6F3">Our own USDOT and MC authority — the load never gets re-brokered.</span>
+            </div>
+            <div style="display:flex;gap:12px;align-items:flex-start">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5C9BFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:3px"><path d="M20 6.5L9.5 17 4 11.6"></path></svg>
+              <span style="font-size:15px;line-height:1.6;color:#DCE6F3">Direct updates from the road, not relayed through a third party.</span>
+            </div>
+            <div style="display:flex;gap:12px;align-items:flex-start">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5C9BFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:3px"><path d="M20 6.5L9.5 17 4 11.6"></path></svg>
+              <span style="font-size:15px;line-height:1.6;color:#DCE6F3">Outbound and inbound Virginia lanes — we quote both directions.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section style="background:#FAFBFD;border-top:1px solid #EEF1F6">
+        <div style="max-width:1240px;margin:0 auto;padding:70px 22px">
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:44px;align-items:center">
+            <div>
+              <div style="font-family:Archivo;font-weight:700;font-size:12.5px;letter-spacing:0.18em;color:#1668E3;text-transform:uppercase">Business Partners</div>
+              <h2 style="margin:14px 0 16px;font-family:Archivo;font-weight:900;font-size:clamp(24px,3vw,33px);line-height:1.14;letter-spacing:-0.028em;color:#0A1A2F">Looking for a Reliable Transportation Partner?</h2>
+              <p style="margin:0 0 26px;max-width:480px;font-size:16px;line-height:1.66;color:#5B6B80">EPS Logistics works with businesses and logistics partners that need dependable transportation capacity without unnecessary complexity. We work directly as the carrier on the load — no brokering, no dispatch layer, no handoffs.</p>
+              <a href="#" onClick="{{ goQuote }}" style="display:inline-flex;align-items:center;gap:10px;background:#1668E3;color:#fff;padding:15px 26px;border-radius:9px;font-family:Archivo;font-weight:700;font-size:15.5px;transition:background .2s,transform .2s" style-hover="background:#0F57C4;color:#fff;transform:translateY(-2px)">
+                Partner With EPS
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"></path></svg>
+              </a>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(138px,1fr));gap:11px">
+              <sc-for list="{{ partners }}" as="p" hint-placeholder-count="7">
+                <div style="background:#fff;border:1px solid #E5EAF2;border-radius:10px;padding:16px 14px;font-family:Archivo;font-weight:600;font-size:14px;color:#2B3B50">{{ p }}</div>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </sc-if>
+
+  <!-- ==================== CONTACT ==================== -->
+  <sc-if value="{{ isContact }}" hint-placeholder-val="{{ false }}">
+    <div>
+      <section style="background:#0A1A2F">
+        <div style="max-width:1240px;margin:0 auto;padding:74px 22px 70px;animation:epsUp .5s ease both">
+          <div style="font-family:Archivo;font-weight:700;font-size:12.5px;letter-spacing:0.18em;color:#5C9BFF;text-transform:uppercase">Contact</div>
+          <h1 style="margin:14px 0 16px;max-width:700px;font-family:Archivo;font-weight:900;font-size:clamp(31px,4.6vw,52px);line-height:1.06;letter-spacing:-0.032em;color:#fff">Let’s Get Your Freight Moving.</h1>
+          <p style="margin:0 0 40px;max-width:620px;font-size:17px;line-height:1.65;color:#B7C6DA">Send us the details of your shipment and we’ll come back with a quote. For anything time-sensitive, call directly — you’ll reach the owner-operator, not a call center.</p>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;max-width:900px">
+            <sc-for list="{{ contactCards }}" as="c" hint-placeholder-count="3">
+              <a href="{{ c.href }}" onClick="{{ c.onClick }}" style="display:block;border:1px solid rgba(255,255,255,0.16);border-radius:14px;padding:24px 22px;background:rgba(255,255,255,0.04);color:#fff;transition:background .2s,border-color .2s,transform .2s" style-hover="background:rgba(255,255,255,0.09);border-color:rgba(255,255,255,0.38);color:#fff;transform:translateY(-2px)">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5C9BFF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="{{ c.d }}"></path></svg>
+                <div style="margin-top:16px;font-family:Archivo;font-weight:700;font-size:11.5px;letter-spacing:0.16em;color:#8FA8C6;text-transform:uppercase">{{ c.label }}</div>
+                <div style="margin-top:7px;font-family:Archivo;font-weight:700;font-size:18px;letter-spacing:-0.015em;color:#fff;word-break:break-word">{{ c.value }}</div>
+                <div style="margin-top:5px;font-size:13.5px;color:#8FA8C6">{{ c.sub }}</div>
+              </a>
+            </sc-for>
+          </div>
+          <div style="margin-top:34px;display:flex;flex-wrap:wrap;gap:13px">
+            <a href="#" onClick="{{ goQuote }}" style="display:flex;align-items:center;gap:9px;background:#1668E3;color:#fff;padding:15px 26px;border-radius:9px;font-family:Archivo;font-weight:700;font-size:15.5px;transition:background .2s" style-hover="background:#0F57C4;color:#fff">
+              Request a Quote
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"></path></svg>
+            </a>
+            <a href="{{ mailtoHref }}" style="display:flex;align-items:center;gap:9px;border:1.5px solid rgba(255,255,255,0.45);color:#fff;padding:15px 26px;border-radius:9px;font-family:Archivo;font-weight:700;font-size:15.5px;transition:background .2s" style-hover="background:rgba(255,255,255,0.12);color:#fff">Contact EPS Logistics</a>
+          </div>
+          <div style="margin-top:30px;display:flex;flex-wrap:wrap;gap:10px">
+            <span style="border:1px solid rgba(255,255,255,0.24);border-radius:999px;padding:8px 16px;font-family:Archivo;font-weight:700;font-size:11.5px;letter-spacing:0.12em;color:#CFDDEF">USDOT #6997514</span>
+            <span style="border:1px solid rgba(255,255,255,0.24);border-radius:999px;padding:8px 16px;font-family:Archivo;font-weight:700;font-size:11.5px;letter-spacing:0.12em;color:#CFDDEF">MC #66625517</span>
+          </div>
+        </div>
+      </section>
+      <section style="background:#fff">
+        <div style="max-width:1240px;margin:0 auto;padding:70px 22px">
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:40px;align-items:center">
+            <div>
+              <h2 style="margin:0 0 14px;font-family:Archivo;font-weight:900;font-size:clamp(23px,2.8vw,30px);line-height:1.16;letter-spacing:-0.028em;color:#0A1A2F">Prefer to send the details in a form?</h2>
+              <p style="margin:0 0 24px;font-size:15.5px;line-height:1.65;color:#5B6B80">The quote form captures pickup and delivery, dates, freight type, pallets, and weight — everything we need to price the lane properly. No instant pricing, no guessing.</p>
+              <a href="#" onClick="{{ goQuote }}" style="display:inline-flex;align-items:center;gap:9px;background:#0A1A2F;color:#fff;padding:15px 25px;border-radius:9px;font-family:Archivo;font-weight:700;font-size:15px;transition:background .2s" style-hover="background:#1668E3;color:#fff">Open the quote form</a>
+            </div>
+            <div style="border-radius:16px;overflow:hidden;height:300px;position:relative;background:#0A1A2F">
+              <image-slot id="eps-contact-photo" src="photos/truck-portrait.png" shape="rect" placeholder="Drop a photo — truck, dock, or road"></image-slot>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </sc-if>
+
+  <!-- ==================== QUOTE ==================== -->
+  <sc-if value="{{ isQuote }}" hint-placeholder-val="{{ false }}">
+    <div style="background:#F7F9FC">
+      <section>
+        <div style="max-width:1000px;margin:0 auto;padding:64px 22px 84px">
+          <div style="animation:epsUp .5s ease both">
+            <div style="font-family:Archivo;font-weight:700;font-size:12.5px;letter-spacing:0.18em;color:#1668E3;text-transform:uppercase">Request a Quote</div>
+            <h1 style="margin:14px 0 14px;font-family:Archivo;font-weight:900;font-size:clamp(29px,4.2vw,46px);line-height:1.07;letter-spacing:-0.032em;color:#0A1A2F;text-wrap:balance">Tell us about your freight.</h1>
+            <p style="margin:0;max-width:620px;font-size:16.5px;line-height:1.65;color:#5B6B80">Send the shipment details and we’ll follow up with pricing and availability. Every quote is reviewed by the owner-operator running the truck — no automated rates, no broker in the middle.</p>
+          </div>
+
+          <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
+            <div style="margin-top:36px;background:#fff;border:1px solid #BFE0C8;border-radius:18px;padding:44px 36px;text-align:center;animation:epsUp .4s ease both">
+              <div style="width:60px;height:60px;margin:0 auto;border-radius:50%;background:#E8F6EC;display:flex;align-items:center;justify-content:center">
+                <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#1D8A44" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6.5L9.5 17 4 11.6"></path></svg>
+              </div>
+              <h2 style="margin:22px 0 10px;font-family:Archivo;font-weight:900;font-size:26px;letter-spacing:-0.025em;color:#0A1A2F">Quote request received.</h2>
+              <p style="margin:0 auto 26px;max-width:470px;font-size:15.5px;line-height:1.65;color:#5B6B80">Thanks — we have your shipment details. We’ll review the lane directly and follow up with pricing and availability.</p>
+              <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center">
+                <a href="#" onClick="{{ resetForm }}" style="border:1.5px solid #C9D3E0;color:#0A1A2F;padding:13px 22px;border-radius:8px;font-family:Archivo;font-weight:700;font-size:14.5px" style-hover="border-color:#0A1A2F;color:#0A1A2F">Submit another request</a>
+                <a href="#" onClick="{{ goHome }}" style="background:#0A1A2F;color:#fff;padding:13px 22px;border-radius:8px;font-family:Archivo;font-weight:700;font-size:14.5px" style-hover="background:#1668E3;color:#fff">Back to home</a>
+              </div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
+            <form onSubmit="{{ submit }}" noValidate="{{ true }}" style="margin-top:36px;background:#fff;border:1px solid #E5EAF2;border-radius:18px;padding:32px 30px 34px;box-shadow:0 18px 46px rgba(10,26,47,0.06)">
+
+              <div style="font-family:Archivo;font-weight:700;font-size:11.5px;letter-spacing:0.16em;color:#7C8AA0;text-transform:uppercase">Your company</div>
+              <div style="margin-top:16px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px">
+                <label style="display:flex;flex-direction:column;gap:7px">
+                  <span style="font-size:13.5px;font-weight:600;color:#3A4A5E">Company Name *</span>
+                  <input type="text" value="{{ f.company }}" onChange="{{ h.company }}" placeholder="Acme Distribution" style="border:1.5px solid {{ e.company }};border-radius:9px;padding:13px 14px;font-size:15px;color:#0A1A2F;outline:none;transition:border-color .2s" style-focus="border-color:#1668E3">
+                  <span style="font-size:12.5px;font-weight:600;color:#C0392B;min-height:16px">{{ m.company }}</span>
+                </label>
+                <label style="display:flex;flex-direction:column;gap:7px">
+                  <span style="font-size:13.5px;font-weight:600;color:#3A4A5E">Contact Name *</span>
+                  <input type="text" value="{{ f.contact }}" onChange="{{ h.contact }}" placeholder="Jordan Ellis" style="border:1.5px solid {{ e.contact }};border-radius:9px;padding:13px 14px;font-size:15px;color:#0A1A2F;outline:none;transition:border-color .2s" style-focus="border-color:#1668E3">
+                  <span style="font-size:12.5px;font-weight:600;color:#C0392B;min-height:16px">{{ m.contact }}</span>
+                </label>
+                <label style="display:flex;flex-direction:column;gap:7px">
+                  <span style="font-size:13.5px;font-weight:600;color:#3A4A5E">Email *</span>
+                  <input type="email" value="{{ f.email }}" onChange="{{ h.email }}" placeholder="you@company.com" style="border:1.5px solid {{ e.email }};border-radius:9px;padding:13px 14px;font-size:15px;color:#0A1A2F;outline:none;transition:border-color .2s" style-focus="border-color:#1668E3">
+                  <span style="font-size:12.5px;font-weight:600;color:#C0392B;min-height:16px">{{ m.email }}</span>
+                </label>
+                <label style="display:flex;flex-direction:column;gap:7px">
+                  <span style="font-size:13.5px;font-weight:600;color:#3A4A5E">Phone *</span>
+                  <input type="tel" value="{{ f.phone }}" onChange="{{ h.phone }}" placeholder="(555) 123-4567" style="border:1.5px solid {{ e.phone }};border-radius:9px;padding:13px 14px;font-size:15px;color:#0A1A2F;outline:none;transition:border-color .2s" style-focus="border-color:#1668E3">
+                  <span style="font-size:12.5px;font-weight:600;color:#C0392B;min-height:16px">{{ m.phone }}</span>
+                </label>
+              </div>
+
+              <div style="margin-top:26px;padding-top:26px;border-top:1px solid #EEF1F6;font-family:Archivo;font-weight:700;font-size:11.5px;letter-spacing:0.16em;color:#7C8AA0;text-transform:uppercase">The lane</div>
+              <div style="margin-top:16px;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px">
+                <label style="display:flex;flex-direction:column;gap:7px">
+                  <span style="font-size:13.5px;font-weight:600;color:#3A4A5E">Pickup City *</span>
+                  <input type="text" value="{{ f.puCity }}" onChange="{{ h.puCity }}" placeholder="Richmond" style="border:1.5px solid {{ e.puCity }};border-radius:9px;padding:13px 14px;font-size:15px;color:#0A1A2F;outline:none;transition:border-color .2s" style-focus="border-color:#1668E3">
+                  <span style="font-size:12.5px;font-weight:600;color:#C0392B;min-height:16px">{{ m.puCity }}</span>
+                </label>
+                <label style="display:flex;flex-direction:column;gap:7px">
+                  <span style="font-size:13.5px;font-weight:600;color:#3A4A5E">Pickup State *</span>
+                  <select value="{{ f.puState }}" onChange="{{ h.puState }}" style="border:1.5px solid {{ e.puState }};border-radius:9px;padding:13px 12px;font-size:15px;color:#0A1A2F;background:#fff;outline:none;transition:border-color .2s" style-focus="border-color:#1668E3">
+                    <option value="">Select state</option>
+                    <sc-for list="{{ states }}" as="st" hint-placeholder-count="0">
+                      <option value="{{ st }}">{{ st }}</option>
+                    </sc-for>
+                  </select>
+                  <span style="font-size:12.5px;font-weight:600;color:#C0392B;min-height:16px">{{ m.puState }}</span>
+                </label>
+                <label style="display:flex;flex-direction:column;gap:7px">
+                  <span style="font-size:13.5px;font-weight:600;color:#3A4A5E">Delivery City *</span>
+                  <input type="text" value="{{ f.doCity }}" onChange="{{ h.doCity }}" placeholder="Charlotte" style="border:1.5px solid {{ e.doCity }};border-radius:9px;padding:13px 14px;font-size:15px;color:#0A1A2F;outline:none;transition:border-color .2s" style-focus="border-color:#1668E3">
+                  <span style="font-size:12.5px;font-weight:600;color:#C0392B;min-height:16px">{{ m.doCity }}</span>
+                </label>
+                <label style="display:flex;flex-direction:column;gap:7px">
+                  <span style="font-size:13.5px;font-weight:600;color:#3A4A5E">Delivery State *</span>
+                  <select value="{{ f.doState }}" onChange="{{ h.doState }}" style="border:1.5px solid {{ e.doState }};border-radius:9px;padding:13px 12px;font-size:15px;color:#0A1A2F;background:#fff;outline:none;transition:border-color .2s" style-focus="border-color:#1668E3">
+                    <option value="">Select state</option>
+                    <sc-for list="{{ states }}" as="st" hint-placeholder-count="0">
+                      <option value="{{ st }}">{{ st }}</option>
+                    </sc-for>
+                  </select>
+                  <span style="font-size:12.5px;font-weight:600;color:#C0392B;min-height:16px">{{ m.doState }}</span>
+                </label>
+              </div>
+
+              <div style="margin-top:26px;padding-top:26px;border-top:1px solid #EEF1F6;font-family:Archivo;font-weight:700;font-size:11.5px;letter-spacing:0.16em;color:#7C8AA0;text-transform:uppercase">The shipment</div>
+              <div style="margin-top:16px;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px">
+                <label style="display:flex;flex-direction:column;gap:7px">
+                  <span style="font-size:13.5px;font-weight:600;color:#3A4A5E">Pickup Date *</span>
+                  <input type="date" value="{{ f.date }}" onChange="{{ h.date }}" style="border:1.5px solid {{ e.date }};border-radius:9px;padding:12px 14px;font-size:15px;color:#0A1A2F;outline:none;transition:border-color .2s" style-focus="border-color:#1668E3">
+                  <span style="font-size:12.5px;font-weight:600;color:#C0392B;min-height:16px">{{ m.date }}</span>
+                </label>
+                <label style="display:flex;flex-direction:column;gap:7px">
+                  <span style="font-size:13.5px;font-weight:600;color:#3A4A5E">Freight Type *</span>
+                  <select value="{{ f.freight }}" onChange="{{ h.freight }}" style="border:1.5px solid {{ e.freight }};border-radius:9px;padding:13px 12px;font-size:15px;color:#0A1A2F;background:#fff;outline:none;transition:border-color .2s" style-focus="border-color:#1668E3">
+                    <option value="">Select type</option>
+                    <sc-for list="{{ freightTypes }}" as="ft" hint-placeholder-count="0">
+                      <option value="{{ ft }}">{{ ft }}</option>
+                    </sc-for>
+                  </select>
+                  <span style="font-size:12.5px;font-weight:600;color:#C0392B;min-height:16px">{{ m.freight }}</span>
+                </label>
+                <label style="display:flex;flex-direction:column;gap:7px">
+                  <span style="font-size:13.5px;font-weight:600;color:#3A4A5E">Number of Pallets</span>
+                  <input type="number" min="0" value="{{ f.pallets }}" onChange="{{ h.pallets }}" placeholder="e.g. 6" style="border:1.5px solid {{ e.pallets }};border-radius:9px;padding:13px 14px;font-size:15px;color:#0A1A2F;outline:none;transition:border-color .2s" style-focus="border-color:#1668E3">
+                  <span style="font-size:12.5px;font-weight:600;color:#C0392B;min-height:16px">{{ m.pallets }}</span>
+                </label>
+                <label style="display:flex;flex-direction:column;gap:7px">
+                  <span style="font-size:13.5px;font-weight:600;color:#3A4A5E">Approximate Weight (lbs)</span>
+                  <input type="number" min="0" value="{{ f.weight }}" onChange="{{ h.weight }}" placeholder="e.g. 4,500" style="border:1.5px solid {{ e.weight }};border-radius:9px;padding:13px 14px;font-size:15px;color:#0A1A2F;outline:none;transition:border-color .2s" style-focus="border-color:#1668E3">
+                  <span style="font-size:12.5px;font-weight:600;color:#C0392B;min-height:16px">{{ m.weight }}</span>
+                </label>
+              </div>
+              <label style="margin-top:8px;display:flex;flex-direction:column;gap:7px">
+                <span style="font-size:13.5px;font-weight:600;color:#3A4A5E">Special Instructions</span>
+                <textarea rows="4" value="{{ f.notes }}" onChange="{{ h.notes }}" placeholder="Dock hours, appointment requirements, liftgate needs, accessorials, anything we should know." style="border:1.5px solid #DCE3EC;border-radius:9px;padding:13px 14px;font-size:15px;line-height:1.55;color:#0A1A2F;outline:none;resize:vertical;transition:border-color .2s" style-focus="border-color:#1668E3"></textarea>
+              </label>
+
+              <sc-if value="{{ hasErrors }}" hint-placeholder-val="{{ false }}">
+                <div style="margin-top:22px;background:#FDF2F1;border:1px solid #F0C7C2;border-radius:10px;padding:14px 16px;display:flex;gap:11px;align-items:flex-start">
+                  <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#C0392B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:1px"><path d="M12 8.5v5M12 16.8v.2M10.3 3.9L2.6 17.4A1.9 1.9 0 004.3 20.3h15.4a1.9 1.9 0 001.7-2.9L13.7 3.9a1.9 1.9 0 00-3.4 0z"></path></svg>
+                  <span style="font-size:14px;line-height:1.5;color:#8E2A20;font-weight:600">Please complete the highlighted fields so we can quote the lane accurately.</span>
+                </div>
+              </sc-if>
+
+              <div style="margin-top:26px;display:flex;flex-wrap:wrap;gap:16px;align-items:center">
+                <button type="submit" style="display:flex;align-items:center;gap:10px;background:#1668E3;color:#fff;border:none;padding:16px 28px;border-radius:9px;font-family:Archivo;font-weight:700;font-size:16px;cursor:pointer;box-shadow:0 12px 28px rgba(22,104,227,0.28);transition:background .2s,transform .2s" style-hover="background:#0F57C4;transform:translateY(-2px)">
+                  Request Freight Quote
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"></path></svg>
+                </button>
+                <span style="font-size:13.5px;line-height:1.5;color:#7C8AA0;max-width:320px">We review every request by hand. No automated pricing, no spam.</span>
+              </div>
+            </form>
+          </sc-if>
+        </div>
+      </section>
+    </div>
+  </sc-if>
+
+  </main>
+
+  <footer style="background:#061223;color:#fff">
+    <div style="max-width:1240px;margin:0 auto;padding:56px 22px 30px">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:36px">
+        <div>
+          <div style="display:flex;align-items:center;gap:13px">
+            <image-slot id="eps-logo-footer" src="photos/eps-mark.png" shape="rect" fit="contain" style="width:48px;height:36px" placeholder="Logo"></image-slot>
+            <span style="display:flex;flex-direction:column;line-height:0.94">
+              <span style="font-family:Archivo;font-weight:900;font-size:21px;letter-spacing:-0.02em;color:#fff">EPS</span>
+              <span style="font-family:Archivo;font-weight:700;font-size:9.5px;letter-spacing:0.25em;color:#fff">LOGISTICS</span>
+            </span>
+          </div>
+          <p style="margin:20px 0 0;font-family:Archivo;font-weight:700;font-size:15px;letter-spacing:-0.01em;color:#5C9BFF">Delivering Opportunities Every Mile.</p>
+          <p style="margin:14px 0 0;font-size:14px;line-height:1.6;color:#8FA8C6">Virginia, USA<br>Serving the Mid-Atlantic, Central &amp; Southern U.S.</p>
+        </div>
+        <div>
+          <div style="font-family:Archivo;font-weight:700;font-size:11.5px;letter-spacing:0.16em;color:#5F7694;text-transform:uppercase">Company</div>
+          <div style="margin-top:16px;display:flex;flex-direction:column;gap:11px">
+            <sc-for list="{{ nav }}" as="item" hint-placeholder-count="6">
+              <a href="#" onClick="{{ item.onClick }}" style="font-size:14.5px;font-weight:500;color:#C6D3E4" style-hover="color:#fff">{{ item.label }}</a>
+            </sc-for>
+          </div>
+        </div>
+        <div>
+          <div style="font-family:Archivo;font-weight:700;font-size:11.5px;letter-spacing:0.16em;color:#5F7694;text-transform:uppercase">Get in touch</div>
+          <div style="margin-top:16px;display:flex;flex-direction:column;gap:11px">
+            <a href="#" onClick="{{ goQuote }}" style="font-size:14.5px;font-weight:500;color:#C6D3E4" style-hover="color:#fff">Request a Quote</a>
+            <a href="{{ telHref }}" style="font-size:14.5px;font-weight:500;color:#C6D3E4" style-hover="color:#fff">{{ phoneText }}</a>
+            <a href="{{ mailtoHref }}" style="font-size:14.5px;font-weight:500;color:#C6D3E4;word-break:break-word" style-hover="color:#fff">{{ emailText }}</a>
+          </div>
+          <sc-if value="{{ hasSocial }}" hint-placeholder-val="{{ false }}">
+            <div style="margin-top:20px;display:flex;gap:10px">
+              <sc-for list="{{ socials }}" as="s" hint-placeholder-count="0">
+                <a href="{{ s.href }}" target="_blank" rel="noopener" aria-label="{{ s.name }}" style="width:38px;height:38px;border:1px solid rgba(255,255,255,0.2);border-radius:9px;display:flex;align-items:center;justify-content:center;transition:background .2s,border-color .2s" style-hover="background:rgba(255,255,255,0.1);border-color:#fff">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="{{ s.d }}"></path></svg>
+                </a>
+              </sc-for>
+            </div>
+          </sc-if>
+        </div>
+        <div>
+          <div style="font-family:Archivo;font-weight:700;font-size:11.5px;letter-spacing:0.16em;color:#5F7694;text-transform:uppercase">Authority &amp; legal</div>
+          <div style="margin-top:16px;display:flex;flex-direction:column;gap:9px">
+            <span style="font-family:Archivo;font-weight:700;font-size:14.5px;letter-spacing:0.04em;color:#fff">USDOT #6997514</span>
+            <span style="font-family:Archivo;font-weight:700;font-size:14.5px;letter-spacing:0.04em;color:#fff">MC #66625517</span>
+            <span style="font-size:13.5px;line-height:1.55;color:#8FA8C6">Owner-operated carrier running under its own authority. Not a broker or dispatch service.</span>
+          </div>
+          <div style="margin-top:18px;display:flex;flex-direction:column;gap:11px">
+            <a href="#" style="font-size:14px;font-weight:500;color:#C6D3E4" style-hover="color:#fff">Privacy Policy</a>
+            <a href="#" style="font-size:14px;font-weight:500;color:#C6D3E4" style-hover="color:#fff">Terms</a>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:40px;padding-top:22px;border-top:1px solid rgba(255,255,255,0.11);display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center">
+        <span style="font-size:13px;color:#7A8DA6">© 2026 EPS Logistics. All rights reserved.</span>
+        <span style="font-size:13px;color:#7A8DA6">Virginia box truck &amp; regional freight transportation.</span>
+      </div>
+    </div>
+  </footer>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;phone&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;3056102811&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Contact info&quot;},&quot;email&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;info@epslogistics.com&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Contact info&quot;},&quot;linkedinUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Social links (shown only when filled)&quot;},&quot;instagramUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Social links (shown only when filled)&quot;},&quot;facebookUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Social links (shown only when filled)&quot;}}">
+const ICON = {
+  clock: "M21 12a9 9 0 11-18 0 9 9 0 0118 0M12 7.4V12l3.6 2.2",
+  shield: "M12 3l7.5 3v6c0 4.4-3.2 7.7-7.5 9-4.3-1.3-7.5-4.6-7.5-9V6zM8.9 12l2.3 2.3 4-4.3",
+  pin: "M12 22s7-5.6 7-11a7 7 0 10-14 0c0 5.4 7 11 7 11zM12 11.6a2.6 2.6 0 100-5.2 2.6 2.6 0 000 5.2",
+  users: "M16 20.5v-1.9a4 4 0 00-4-4H6a4 4 0 00-4 4v1.9M9 10.6a3.6 3.6 0 100-7.2 3.6 3.6 0 000 7.2M22 20.5v-1.9a4 4 0 00-3-3.8M17 3.6a4 4 0 010 7",
+  box: "M20.5 7.8L12 12 3.5 7.8M12 12v9.5M20.5 7.8v8.4L12 21l-8.5-4.8V7.8L12 3z",
+  store: "M3.2 9.5L5.4 4h13.2l2.2 5.5M3.2 9.5h17.6V20H3.2zM3.2 9.5a2.2 2.2 0 004.4 0 2.2 2.2 0 004.4 0 2.2 2.2 0 004.4 0 2.2 2.2 0 004.4 0",
+  route: "M17 2l4 4-4 4M3 11V9a4 4 0 014-4h14M7 22l-4-4 4-4M21 13v2a4 4 0 01-4 4H3",
+  truck: "M2 6.5h11.5v10H2zM13.5 10.5h4.2l3.3 3.4v2.6h-7.5M5.8 16.5a2.1 2.1 0 104.2 0 2.1 2.1 0 00-4.2 0M15 16.5a2.1 2.1 0 104.2 0 2.1 2.1 0 00-4.2 0",
+  handshake: "M12 8.6l2.6-2.6a2.1 2.1 0 013 0l3.4 3.4-6 6-2-2M11 20.2l-6-6 5-5 3 3-2.6 2.6M2.4 10.6L5.9 7.1",
+  sliders: "M4 6h16M4 12h16M4 18h16M9 3.2v5.6M15 9.2v5.6M7 15.2v5.6",
+  star: "M12 3.5l2.7 5.6 6.1.9-4.4 4.3 1 6.1-5.4-2.9-5.4 2.9 1-6.1L3.2 10l6.1-.9z",
+  chart: "M2 20.5h20M6 20.5V13M11 20.5V6M16 20.5v-5.5M21 20.5V9",
+  chat: "M21 14.5a3 3 0 01-3 3H8l-4 3.2V6a3 3 0 013-3h10a3 3 0 013 3z",
+  phone: "M21.5 16.9v3a2 2 0 01-2.2 2 19.5 19.5 0 01-8.5-3 19 19 0 01-5.9-5.9 19.5 19.5 0 01-3-8.6A2 2 0 013.9 2.4h3a2 2 0 012 1.7c.1 1 .4 2 .7 2.9a2 2 0 01-.5 2.1L8 10.2a15.5 15.5 0 006 6l1.1-1.1a2 2 0 012.1-.5c.9.3 1.9.6 2.9.7a2 2 0 011.4 1.6z",
+  mail: "M3 5.2h18v13.6H3zM3.5 5.8L12 13l8.5-7.2",
+  linkedin: "M6.4 9.8v9.4M6.4 5.4v.1M11 19.2V9.8M11 14c0-2.3 1.5-3.6 3.4-3.6 1.9 0 3.1 1.2 3.1 3.6v5.2M3 3.2h18v17.6H3z",
+  instagram: "M7.5 3.2h9A4.3 4.3 0 0120.8 7.5v9a4.3 4.3 0 01-4.3 4.3h-9A4.3 4.3 0 013.2 16.5v-9A4.3 4.3 0 017.5 3.2M12 8.3a3.7 3.7 0 100 7.4 3.7 3.7 0 000-7.4M17.2 6.9v.1",
+  facebook: "M15.6 3.2h-2.4a3.9 3.9 0 00-3.9 3.9v2.6H7v3.4h2.3v7.7h3.4v-7.7h2.4l.6-3.4h-3V7.5c0-.6.4-1 1-1h2z"
+};
+
+const HUBS = [
+  { n: "Philadelphia, PA", c: [-75.16, 39.95], tier: 1 },
+  { n: "Baltimore, MD", c: [-76.61, 39.29], tier: 1 },
+  { n: "Charlotte, NC", c: [-80.84, 35.23], tier: 1 },
+  { n: "Atlanta, GA", c: [-84.39, 33.75], tier: 1 },
+  { n: "Nashville, TN", c: [-86.78, 36.16], tier: 2 },
+  { n: "Jacksonville, FL", c: [-81.66, 30.33], tier: 2 },
+  { n: "Memphis, TN", c: [-90.05, 35.15], tier: 2 },
+  { n: "Dallas, TX", c: [-96.8, 32.78], tier: 2 }
+];
+const VA = [-77.46, 37.54];
+
+class Component extends DCLogic {
+  state = {
+    page: "home",
+    menuOpen: false,
+    w: typeof window !== "undefined" ? window.innerWidth : 1200,
+    sent: false,
+    errors: {},
+    showErr: false,
+    form: { company: "", contact: "", email: "", phone: "", puCity: "", puState: "", doCity: "", doState: "", date: "", freight: "", pallets: "", weight: "", notes: "" }
+  };
+
+  componentDidMount() {
+    this._onResize = () => {
+      const w = window.innerWidth;
+      if (Math.abs(w - this.state.w) > 4) this.setState({ w });
+      this.drawMap();
+    };
+    window.addEventListener("resize", this._onResize);
+    this.waitLibs();
+  }
+  componentWillUnmount() {
+    window.removeEventListener("resize", this._onResize);
+    if (this._t) clearInterval(this._t);
+  }
+
+  waitLibs() {
+    if (window.d3 && window.topojson) return this.loadGeo();
+    let n = 0;
+    this._t = setInterval(() => {
+      n++;
+      if (window.d3 && window.topojson) { clearInterval(this._t); this.loadGeo(); }
+      else if (n > 120) clearInterval(this._t);
+    }, 120);
+  }
+
+  loadGeo() {
+    window.d3.json("https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-110m.json").then((topo) => {
+      const fc = window.topojson.feature(topo, topo.objects.countries);
+      const us = fc.features.filter((f) => String(f.id) === "840")[0];
+      if (!us) return;
+      this._geo = [us];
+      // keep only the contiguous 48 — drop the Alaska and Hawaii insets
+      try {
+        const polys = us.geometry.type === "MultiPolygon" ? us.geometry.coordinates : [us.geometry.coordinates];
+        const rings = polys.filter((poly) => {
+          const pts = poly && poly[0];
+          if (!pts || !pts.length || !Array.isArray(pts[0])) return true;
+          let lon = 0, lat = 0;
+          for (let k = 0; k < pts.length; k++) { lon += pts[k][0]; lat += pts[k][1]; }
+          lon /= pts.length; lat /= pts.length;
+          return lon > -130 && lat < 50;
+        });
+        if (rings.length) {
+          this._geo = [{ type: "Feature", properties: {}, geometry: { type: "MultiPolygon", coordinates: rings } }];
+        }
+      } catch (e) { console.error("EPS map: ring filter failed, using full US", e); }
+      this.drawMap();
+    }).catch((e) => console.error("EPS map: geometry load failed", e));
+  }
+
+  // Shared callback ref: React calls detach(null) AFTER attach(node) in the same
+  // commit, so never null out here — just ignore detaches and keep the live node.
+  setMapNode = (n) => { if (!n) return; this._node = n; requestAnimationFrame(() => this.drawMap()); };
+
+  componentDidUpdate() { this.drawMap(); }
+
+  drawMap() {
+    const node = this._node, d3 = window.d3;
+    if (!node || !node.isConnected || !this._geo || !d3) return;
+    const w = Math.max(300, node.clientWidth || 560);
+    const h = Math.max(300, Math.round(w * 0.6));
+    if (node.dataset.w === String(w)) return;
+    node.dataset.w = String(w);
+    node.innerHTML = "";
+
+    const us = { type: "FeatureCollection", features: this._geo };
+    const proj = d3.geoAlbersUsa().fitExtent([[16, 14], [w - 16, h - 14]], us);
+    const path = d3.geoPath(proj);
+    const svg = d3.select(node).append("svg").attr("width", "100%").attr("viewBox", `0 0 ${w} ${h}`).style("display", "block");
+
+    const defs = svg.append("defs");
+    const va = proj(VA) || [w * 0.72, h * 0.42];
+    const g = defs.append("radialGradient").attr("id", "epsGlow").attr("gradientUnits", "userSpaceOnUse")
+      .attr("cx", va[0]).attr("cy", va[1]).attr("r", w * 0.42);
+    g.append("stop").attr("offset", "0%").attr("stop-color", "#2C7BF2").attr("stop-opacity", 0.5);
+    g.append("stop").attr("offset", "42%").attr("stop-color", "#1E63D6").attr("stop-opacity", 0.22);
+    g.append("stop").attr("offset", "78%").attr("stop-color", "#1E63D6").attr("stop-opacity", 0.06);
+    g.append("stop").attr("offset", "100%").attr("stop-color", "#1E63D6").attr("stop-opacity", 0);
+    defs.append("clipPath").attr("id", "epsClip").append("path").attr("d", path(us.features[0]));
+
+    svg.append("path").attr("d", path(us.features[0])).attr("fill", "#1A3554").attr("stroke", "none");
+    svg.append("rect").attr("width", w).attr("height", h).attr("fill", "url(#epsGlow)").attr("clip-path", "url(#epsClip)");
+    svg.append("path").attr("d", path(us.features[0])).attr("fill", "none").attr("stroke", "#6C9AD0").attr("stroke-width", 1.2).attr("stroke-opacity", 0.75);
+
+    const lanes = svg.append("g").attr("fill", "none").attr("stroke-linecap", "round");
+    HUBS.forEach((hub, i) => {
+      const p = proj(hub.c);
+      if (!p) return;
+      const bow = Math.abs(p[0] - va[0]) * 0.1 + Math.abs(p[1] - va[1]) * 0.06;
+      const mx = (va[0] + p[0]) / 2, my = (va[1] + p[1]) / 2 + (p[1] > va[1] ? bow : -bow);
+      const d = `M${va[0]},${va[1]} Q${mx},${my} ${p[0]},${p[1]}`;
+      const el = lanes.append("path").attr("d", d)
+        .attr("stroke", hub.tier === 2 ? "#8FBAF0" : "#D5E6FF")
+        .attr("stroke-width", hub.tier === 2 ? 1 : 1.3)
+        .attr("stroke-opacity", hub.tier === 2 ? 0.42 : 0.62);
+      const len = el.node().getTotalLength();
+      el.attr("stroke-dasharray", len).attr("stroke-dashoffset", len)
+        .style("animation", `epsDash 1.1s ease ${0.15 + i * 0.07}s forwards`);
+
+      // two-way arrowheads on the core lanes only, so the map stays readable
+      if (hub.tier === 1) {
+        const node2 = el.node();
+        const as = Math.max(2.8, w * 0.0065);
+        [[0.60, 1], [0.40, -1]].forEach(([t, dir]) => {
+          const a = node2.getPointAtLength(len * t);
+          const b = node2.getPointAtLength(Math.min(len, Math.max(0, len * t + dir * 6)));
+          const ang = Math.atan2(b.y - a.y, b.x - a.x) * 180 / Math.PI;
+          lanes.append("path")
+            .attr("d", `M${-as},${-as * 0.7} L${as * 0.9},0 L${-as},${as * 0.7} Z`)
+            .attr("transform", `translate(${a.x},${a.y}) rotate(${ang})`)
+            .attr("fill", "#EAF3FF").attr("fill-opacity", 0.8).attr("stroke", "none")
+            .style("opacity", 0)
+            .style("animation", `epsIn .4s ease ${0.9 + i * 0.07}s forwards`);
+        });
+      }
+    });
+
+    const dots = svg.append("g");
+    HUBS.forEach((hub) => {
+      const p = proj(hub.c);
+      if (!p) return;
+      dots.append("circle").attr("cx", p[0]).attr("cy", p[1]).attr("r", hub.tier === 2 ? 2.8 : 3.4)
+        .attr("fill", "#fff").attr("fill-opacity", hub.tier === 2 ? 0.72 : 1);
+    });
+
+    const home = svg.append("g");
+    home.append("circle").attr("cx", va[0]).attr("cy", va[1]).attr("r", 5).attr("fill", "none")
+      .attr("stroke", "#66A6FF").attr("stroke-width", 1.5)
+      .style("animation", "epsPulse 2.4s ease-out infinite");
+    home.append("circle").attr("cx", va[0]).attr("cy", va[1]).attr("r", 6).attr("fill", "#fff").attr("stroke", "#1668E3").attr("stroke-width", 2.5);
+    const fs = Math.max(11, Math.min(16, w * 0.026));
+    const estW = fs * 0.68 * 8;
+    const flip = va[0] + 13 + estW > w - 8;
+    home.append("text")
+      .attr("x", flip ? va[0] - 13 : va[0] + 13)
+      .attr("y", flip ? va[1] + 20 : va[1] + 5)
+      .attr("text-anchor", flip ? "end" : "start")
+      .attr("font-family", "Archivo, sans-serif").attr("font-size", fs)
+      .attr("font-weight", 800).attr("letter-spacing", "0.06em").attr("fill", "#fff")
+      .attr("paint-order", "stroke").attr("stroke", "#0B1E33").attr("stroke-width", 3).attr("stroke-opacity", 0.65)
+      .text("VIRGINIA");
+  }
+
+  go = (page) => (ev) => {
+    if (ev && ev.preventDefault) ev.preventDefault();
+    this.setState({ page, menuOpen: false });
+    if (typeof window !== "undefined") window.scrollTo(0, 0);
+  };
+
+  set = (k) => (ev) => {
+    const v = ev.target.value;
+    this.setState((s) => ({ form: Object.assign({}, s.form, { [k]: v }) }));
+  };
+
+  validate(f) {
+    const e = {};
+    const req = { company: "Company name is required", contact: "Contact name is required", puCity: "Pickup city is required", puState: "Select a pickup state", doCity: "Delivery city is required", doState: "Select a delivery state", date: "Pickup date is required", freight: "Select a freight type" };
+    Object.keys(req).forEach((k) => { if (!String(f[k] || "").trim()) e[k] = req[k]; });
+    if (!f.email.trim()) e.email = "Email is required";
+    else if (!/^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(f.email.trim())) e.email = "Enter a valid email address";
+    const digits = f.phone.replace(/\D/g, "");
+    if (!f.phone.trim()) e.phone = "Phone is required";
+    else if (digits.length < 10) e.phone = "Enter a 10-digit phone number";
+    if (f.pallets !== "" && (isNaN(+f.pallets) || +f.pallets < 0)) e.pallets = "Enter a valid number";
+    if (f.weight !== "" && (isNaN(+f.weight) || +f.weight < 0)) e.weight = "Enter a valid weight";
+    return e;
+  }
+
+  submit = (ev) => {
+    ev.preventDefault();
+    const e = this.validate(this.state.form);
+    if (Object.keys(e).length) { this.setState({ errors: e, showErr: true }); return; }
+    this.setState({ errors: {}, showErr: false, sent: true });
+    if (typeof window !== "undefined") window.scrollTo(0, 0);
+  };
+
+  reset = (ev) => {
+    if (ev && ev.preventDefault) ev.preventDefault();
+    this.setState({ sent: false, showErr: false, errors: {}, form: { company: "", contact: "", email: "", phone: "", puCity: "", puState: "", doCity: "", doState: "", date: "", freight: "", pallets: "", weight: "", notes: "" } });
+  };
+
+  renderVals() {
+    const p = this.props, s = this.state, page = s.page;
+    const rawPhone = (p.phone || "").trim();
+    const pd = rawPhone.replace(/\D/g, "");
+    const phone = pd.length === 10
+      ? "(" + pd.slice(0, 3) + ") " + pd.slice(3, 6) + "-" + pd.slice(6)
+      : pd.length === 11 && pd[0] === "1"
+        ? "+1 (" + pd.slice(1, 4) + ") " + pd.slice(4, 7) + "-" + pd.slice(7)
+        : rawPhone;
+    const email = (p.email || "").trim();
+    const isDesk = s.w >= 940;
+
+    const pages = [["home", "Home"], ["services", "Services"], ["coverage", "Coverage"], ["about", "About"], ["why", "Why EPS"], ["contact", "Contact"]];
+    const nav = pages.map(([id, label]) => ({
+      label, onClick: this.go(id),
+      color: page === id ? "#0A1A2F" : "#4A5A70",
+      active: page === id ? 1 : 0
+    }));
+
+    const socials = [
+      { name: "LinkedIn", href: (p.linkedinUrl || "").trim(), d: ICON.linkedin },
+      { name: "Instagram", href: (p.instagramUrl || "").trim(), d: ICON.instagram },
+      { name: "Facebook", href: (p.facebookUrl || "").trim(), d: ICON.facebook }
+    ].filter((x) => /^https?:\/\//i.test(x.href));
+
+    const err = s.showErr ? s.errors : {};
+    const border = {}; const msg = {};
+    ["company", "contact", "email", "phone", "puCity", "puState", "doCity", "doState", "date", "freight", "pallets", "weight"].forEach((k) => {
+      border[k] = err[k] ? "#D9534F" : "#DCE3EC";
+      msg[k] = err[k] || "";
+    });
+
+    const svc = [
+      { title: "Box Truck Freight", short: "Palletized freight, commercial goods, retail products, and general cargo.", body: "Professional transportation for palletized freight, commercial goods, retail products, equipment, and general cargo.", d: ICON.box },
+      { title: "Local & Regional Delivery", short: "Flexible transportation throughout Virginia and surrounding markets.", body: "Flexible transportation throughout Virginia and surrounding markets, sized for businesses that ship regularly but not by the truckload.", d: ICON.store },
+      { title: "Long-Distance Freight", short: "Virginia connected to the Central and Southern U.S. — both ways.", body: "Reliable transportation connecting Virginia with destinations throughout the Central and Southern United States — outbound loads and inbound freight returning to Virginia.", d: ICON.route },
+      { title: "Dedicated Routes", short: "Consistent, recurring pickup and delivery schedules.", body: "Recurring transportation solutions for businesses requiring consistent pickup and delivery schedules.", d: ICON.pin },
+      { title: "Last-Mile & Business Delivery", short: "Commercial delivery for warehouses, distributors, and retailers.", body: "Commercial delivery solutions for businesses, warehouses, distributors, and retailers.", d: ICON.truck },
+      { title: "Custom Transportation Solutions", short: "Freight solutions built around your routes and schedules.", body: "Flexible freight solutions based on shipment requirements, routes, schedules, and business needs.", d: ICON.sliders }
+    ];
+
+    const values = [
+      { title: "Reliability", body: "Dependable pickups, deliveries, and communication.", long: "We understand that freight schedules matter. We focus on dependable pickups, deliveries, and communication.", d: ICON.shield },
+      { title: "Professional Service", body: "Every shipment represents both businesses.", long: "Every shipment represents our company and our customer's business — and it gets handled that way.", d: ICON.star },
+      { title: "Communication", body: "Clear updates from pickup through delivery.", long: "Clear communication from pickup through delivery, so you always know where your freight stands.", d: ICON.chat },
+      { title: "Flexible Solutions", body: "Built around growing businesses.", long: "Transportation solutions designed around the needs of growing businesses.", d: ICON.chart }
+    ];
+
+    return {
+      isDesk, isMobile: !isDesk, menuOpen: s.menuOpen,
+      nav, mapRef: this.setMapNode,
+      toggleMenu: () => this.setState({ menuOpen: !s.menuOpen }),
+      goHome: this.go("home"), goServices: this.go("services"), goCoverage: this.go("coverage"),
+      goAbout: this.go("about"), goWhy: this.go("why"), goContact: this.go("contact"), goQuote: this.go("quote"),
+      isHome: page === "home", isServices: page === "services", isCoverage: page === "coverage",
+      isAbout: page === "about", isWhy: page === "why", isContact: page === "contact", isQuote: page === "quote",
+
+      trust: [
+        { label: "On-Time Delivery", d: ICON.clock },
+        { label: "Safe & Insured", d: ICON.shield },
+        { label: "Regional Coverage", d: ICON.pin },
+        { label: "Business Focused", d: ICON.users }
+      ],
+      servicesTop: svc.slice(0, 4).map((x) => ({ title: x.title, short: x.short, d: x.d })),
+      servicesAll: svc,
+      values,
+      legend: [
+        { color: "#1668E3", label: "Home base — Virginia" },
+        { color: "#5C9BFF", label: "Core lanes — Mid-Atlantic & Southeast, both directions" },
+        { color: "#A8C9FF", label: "Extended lanes — Central & Southern U.S., both directions" }
+      ],
+      regions: [
+        { tag: "Home base", title: "Virginia", body: "Local pickups and deliveries statewide, from the Richmond and Hampton Roads corridors to Northern Virginia." },
+        { tag: "Core lanes", title: "Mid-Atlantic", body: "Regular runs to and from Maryland, D.C., Delaware, Pennsylvania, New Jersey, North Carolina, and West Virginia." },
+        { tag: "Core lanes", title: "Southeast", body: "Freight south into the Carolinas, Georgia, Tennessee, Alabama, and Florida — and backhauls returning to Virginia." },
+        { tag: "Extended lanes", title: "Central & Southern U.S.", body: "Selected long-distance lanes reaching Ohio, Indiana, Kentucky, Mississippi, Louisiana, and Texas markets, outbound or inbound." }
+      ],
+      partners: ["Shippers", "Brokers", "Warehouses", "Distributors", "Retailers", "Manufacturers", "E-commerce"],
+      howWeWork: [
+        { n: "01", title: "You send the details", body: "Lane, dates, freight type, pallets, and weight — through the form or a phone call." },
+        { n: "02", title: "We confirm capacity", body: "A person reviews the lane and confirms what we can actually cover, and when." },
+        { n: "03", title: "We move the freight", body: "Professional pickup and delivery, with updates along the way." },
+        { n: "04", title: "We keep the lane", body: "Recurring shipments become dedicated routes as your volume grows." }
+      ],
+      contactLines: [
+        { d: ICON.phone, main: phone || "Phone — coming soon", sub: phone ? "Mon–Fri, business hours" : "Add your number in Tweaks", href: pd ? "tel:+" + (pd.length === 10 ? "1" + pd : pd) : "#" },
+        { d: ICON.mail, main: email || "Email — coming soon", sub: email ? "Quotes and freight requests" : "Add your address in Tweaks", href: email ? "mailto:" + email : "#" },
+        { d: ICON.pin, main: "Virginia, USA", sub: "Serving the Mid-Atlantic, Central & Southern U.S.", href: "#", onClick: this.go("coverage") }
+      ],
+      contactCards: [
+        { d: ICON.phone, label: "Phone", value: phone || "Coming soon", sub: phone ? "Mon–Fri, business hours — you reach the owner-operator" : "Number to be provided", href: pd ? "tel:+" + (pd.length === 10 ? "1" + pd : pd) : "#" },
+        { d: ICON.mail, label: "Email", value: email || "Coming soon", sub: email ? "Quotes and freight requests" : "Address to be provided", href: email ? "mailto:" + email : "#" },
+        { d: ICON.pin, label: "Based in", value: "Virginia, USA", sub: "USDOT #6997514 · MC #66625517", href: "#", onClick: this.go("coverage") }
+      ],
+      mailtoHref: email ? "mailto:" + email : "#",
+      telHref: pd ? "tel:+" + (pd.length === 10 ? "1" + pd : pd) : "#",
+      hasPhone: !!phone, hasEmail: !!email,
+      phoneText: phone || "Phone — coming soon",
+      emailText: email || "Email — coming soon",
+      hasSocial: socials.length > 0,
+      socials,
+
+      f: s.form, e: border, m: msg,
+      h: { company: this.set("company"), contact: this.set("contact"), email: this.set("email"), phone: this.set("phone"), puCity: this.set("puCity"), puState: this.set("puState"), doCity: this.set("doCity"), doState: this.set("doState"), date: this.set("date"), freight: this.set("freight"), pallets: this.set("pallets"), weight: this.set("weight"), notes: this.set("notes") },
+      states: ["AL","AR","DC","DE","FL","GA","IL","IN","KY","LA","MD","MO","MS","NC","NJ","NY","OH","OK","PA","SC","TN","TX","VA","WV"],
+      freightTypes: ["Palletized freight", "Commercial goods", "Retail products", "Equipment", "General cargo", "Other"],
+      submit: this.submit, resetForm: this.reset,
+      sent: s.sent, notSent: !s.sent, hasErrors: s.showErr && Object.keys(s.errors).length > 0
+    };
+  }
+}
+
+</script>
+</body>
+</html>
