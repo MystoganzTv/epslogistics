@@ -116,11 +116,11 @@ export default function ContactPage() {
             </div>
             <div className="relative h-[300px] overflow-hidden rounded-2xl bg-ink">
               <Image
-                src="/photos/truck-portrait.webp"
+                src="/photos/truck-detail.webp"
                 alt=""
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
-                className="object-cover"
+                className="object-cover object-[45%_40%]"
               />
             </div>
           </div>

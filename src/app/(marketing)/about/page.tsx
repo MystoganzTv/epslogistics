@@ -66,11 +66,11 @@ export default function AboutPage() {
 
             <div className="relative h-[380px] overflow-hidden rounded-[18px] bg-ink">
               <Image
-                src="/photos/truck-portrait.webp"
+                src="/photos/truck-detail.webp"
                 alt={`${site.name} box truck`}
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
-                className="object-cover"
+                className="object-cover object-[45%_center]"
               />
             </div>
           </div>

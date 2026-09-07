@@ -7,7 +7,6 @@ import { Icon } from "@/components/ui/icon";
 import { MapLegend } from "@/components/ui/map-legend";
 import { CoverageMap } from "@/components/coverage-map";
 import { AuthorityBadges } from "@/components/sections/authority-badges";
-import { HeroVisual } from "@/components/sections/hero-visual";
 import { PartnersSection } from "@/components/sections/partners";
 import { services, site, trust, values } from "@/lib/site";
 
@@ -60,7 +59,38 @@ export default function HomePage() {
             </div>
           </div>
 
-          <HeroVisual />
+          <div className="animate-eps-in relative min-h-[430px] overflow-hidden rounded-[20px] border border-white/15 shadow-[0_30px_70px_rgba(0,0,0,0.42)] lg:min-h-[470px]">
+            <Image
+              src="/photos/hero-truck.webp"
+              alt="EPS Logistics box truck on the interstate, headed for Washington DC, Richmond, Raleigh and Atlanta"
+              fill
+              priority
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              className="object-cover object-[62%_center]"
+            />
+            <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(6,20,38,0)_48%,rgba(6,20,38,0.72)_100%)]" />
+            <div className="pointer-events-none absolute bottom-6 left-7">
+              <p className="font-script text-[31px] font-semibold leading-[1.05] text-white drop-shadow-[0_2px_12px_rgba(6,20,38,0.6)]">
+                More Than Freight
+                <br />— Progress.
+              </p>
+              <svg
+                width="128"
+                height="14"
+                viewBox="0 0 150 16"
+                fill="none"
+                className="mt-0.5 block"
+                aria-hidden
+              >
+                <path
+                  d="M4 11C40 3 100 3 146 8"
+                  stroke="#3B8BFF"
+                  strokeWidth="5"
+                  strokeLinecap="round"
+                />
+              </svg>
+            </div>
+          </div>
         </div>
       </section>
 
