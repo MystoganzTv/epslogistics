@@ -18,14 +18,14 @@ export const site = {
   legalName: "EPS Logistics",
   tagline: "Delivering Opportunities Every Mile",
   headline: "Reliable Freight. Real Solutions. Every Mile.",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://epslogistics.com",
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.eps-logistics.com",
   description:
     "EPS Logistics is a Virginia-based, owner-operated box truck carrier (USDOT #6997514 / MC #66625517) moving freight outbound and inbound across the Mid-Atlantic, Midwest and Southern United States. Local and regional delivery, dedicated routes and long-distance freight.",
   shortDescription:
     "Virginia-based transportation solutions serving businesses across the Mid-Atlantic, Midwest, and Southern United States.",
   phone: formatPhone(PHONE_RAW),
   phoneHref: `tel:+${phoneDigits.length === 10 ? "1" + phoneDigits : phoneDigits}`,
-  email: "info@epslogistics.com",
+  email: "info@eps-logistics.com",
   get emailHref() {
     return `mailto:${this.email}`;
   },

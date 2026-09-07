@@ -85,8 +85,8 @@ Para activarlo:
 3. Mientras el dominio no este verificado, dejar `QUOTE_FROM_EMAIL` con
    `onboarding@resend.dev`. Ese remitente de pruebas **solo puede enviar al
    correo de la propia cuenta de Resend** — para que llegue a
-   `info@epslogistics.com` hay que verificar el dominio en Resend > Domains y
-   cambiar el remitente a algo como `quotes@epslogistics.com`.
+   `info@eps-logistics.com` hay que verificar el dominio en Resend > Domains y
+   cambiar el remitente a algo como `quotes@eps-logistics.com`.
 
 El render del correo esta separado del envio (`renderQuoteEmail`), asi que se
 puede previsualizar sin mandar nada.
@@ -97,7 +97,7 @@ tiene el esquema Postgres con RLS ya pensado.
 ## Pendiente
 
 - [ ] Cuenta de Resend + `RESEND_API_KEY` en Vercel
-- [ ] Verificar epslogistics.com en Resend y cambiar el remitente
+- [ ] Verificar eps-logistics.com en Resend y cambiar el remitente
 - [ ] Rate limiting en la server action — el honeypot solo frena bots basicos
 - [ ] Redactar `privacy` y `terms` de verdad; los actuales son placeholders
 - [ ] Fotos: las del canvas son renders. Sustituir por fotos reales del camion

@@ -40,23 +40,29 @@ vercel.com/new. Cada push a `main` redespliega solo.
 El remitente de pruebas `onboarding@resend.dev` **solo puede enviar al correo
 de tu propia cuenta de Resend**. Cualquier otro destinatario devuelve un 403.
 
-Asi que hasta comprar y verificar epslogistics.com:
+Asi que hasta comprar y verificar eps-logistics.com:
 
 ```
 QUOTE_TO_EMAIL=<el correo con el que abriste la cuenta de Resend>
 ```
 
-## 3. Cuando ya tengas epslogistics.com
+## 3. Dominio
 
-1. **Vercel > Settings > Domains**: anadir el dominio y seguir los registros DNS
-   que indique.
-2. **Resend > Domains > Add Domain**: anadir `epslogistics.com` y crear los
+El dominio ya esta conectado en Vercel:
+
+- `eps-logistics.com` redirige (308) a `www.eps-logistics.com`
+- `www.eps-logistics.com` es produccion
+- `epslogistics.vercel.app` sigue apuntando a produccion
+
+Falta verificarlo en Resend para poder enviar desde el.
+
+1. **Resend > Domains > Add Domain**: anadir `eps-logistics.com` y crear los
    registros DNS que pida (SPF, DKIM y DMARC). Al verificarse, cambiar:
 
    ```
-   QUOTE_FROM_EMAIL=EPS Logistics <quotes@epslogistics.com>
-   QUOTE_TO_EMAIL=info@epslogistics.com
-   NEXT_PUBLIC_SITE_URL=https://epslogistics.com
+   QUOTE_FROM_EMAIL=EPS Logistics <quotes@eps-logistics.com>
+   QUOTE_TO_EMAIL=info@eps-logistics.com
+   NEXT_PUBLIC_SITE_URL=https://www.eps-logistics.com
    ```
 
 3. Redesplegar y mandar una cotizacion de prueba desde el formulario.

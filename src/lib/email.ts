@@ -13,7 +13,7 @@ function client() {
 }
 
 const TO = process.env.QUOTE_TO_EMAIL ?? site.email;
-/** Hasta verificar epslogistics.com en Resend, sirve su dominio de pruebas. */
+/** Hasta verificar eps-logistics.com en Resend, sirve su dominio de pruebas. */
 const FROM = process.env.QUOTE_FROM_EMAIL ?? "EPS Logistics <onboarding@resend.dev>";
 
 const dateFmt = new Intl.DateTimeFormat("en-US", {
