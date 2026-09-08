@@ -40,7 +40,7 @@ const cards: {
     icon: "pin",
     label: "Based in",
     value: site.region,
-    sub: `USDOT #${site.usdot} · MC #${site.mc}`,
+    sub: "Running the Mid-Atlantic, Midwest and South — see the lanes",
     href: "/coverage",
     internal: true,
   },
