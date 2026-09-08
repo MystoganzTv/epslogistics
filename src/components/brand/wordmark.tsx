@@ -3,103 +3,65 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { site } from "@/lib/site";
 
-/** Proporciones del simbolo recortado del logo oficial. */
-const MARK = { w: 309, h: 451 };
+/** Proporciones del lockup recortado del logo oficial. */
+const LOCKUP = { w: 1105, h: 422 };
 
 /**
- * Marca del header/footer: el simbolo oficial de EPS mas "EPS / LOGISTICS".
+ * La marca es el logo oficial, no una reconstruccion.
  *
- * Las dos variantes del simbolo (oscura y clara) se pintan siempre, una encima
- * de la otra, y se cruzan por opacidad. Cambiar el `src` al vuelo provocaba un
- * parpadeo mientras el navegador cargaba la otra imagen.
+ * Antes se redibujaba con Archivo: "EPS" y "LOGISTICS" no cuadraban de ancho
+ * (en el logo real miden 744 y 740px, alineadas al pixel) y las letras no eran
+ * las mismas. Un parecido razonable de una marca se lee como error.
+ *
+ * Las dos variantes se pintan siempre, superpuestas, y se cruzan por opacidad:
+ * cambiar el `src` al vuelo provocaba un parpadeo mientras cargaba la otra.
  */
 export function Wordmark({
   tone = "dark",
-  tagline = false,
-  markHeight = 44,
+  height = 40,
   className,
   priority = false,
 }: {
   /** "dark" = sobre fondo claro. "light" = sobre fondo oscuro. */
   tone?: "dark" | "light";
-  tagline?: boolean;
-  markHeight?: number;
+  /** Altura del lockup en px. */
+  height?: number;
   className?: string;
   priority?: boolean;
 }) {
   const onDark = tone === "light";
-  const markWidth = Math.round((markHeight * MARK.w) / MARK.h);
+  const width = Math.round((height * LOCKUP.w) / LOCKUP.h);
 
   return (
     <Link
       href="/"
       aria-label={`${site.name} — home`}
-      className={cn("flex shrink-0 items-center gap-3.5", className)}
+      className={cn("relative block shrink-0", className)}
+      style={{ width, height }}
     >
-      <span
-        className="relative block shrink-0"
-        style={{ width: markWidth, height: markHeight }}
-      >
-        <Image
-          src="/eps-mark.png"
-          alt=""
-          width={markWidth}
-          height={markHeight}
-          priority={priority}
-          className={cn(
-            "absolute inset-0 transition-opacity duration-300",
-            onDark ? "opacity-0" : "opacity-100",
-          )}
-        />
-        <Image
-          src="/eps-mark-light.png"
-          alt=""
-          width={markWidth}
-          height={markHeight}
-          priority={priority}
-          className={cn(
-            "absolute inset-0 transition-opacity duration-300",
-            onDark ? "opacity-100" : "opacity-0",
-          )}
-        />
-      </span>
-
-      <span
+      <Image
+        src="/eps-lockup.png"
+        alt={site.name}
+        width={width}
+        height={height}
+        priority={priority}
         className={cn(
-          "flex flex-col leading-[0.94] transition-colors duration-300",
-          onDark ? "text-white" : "text-ink",
+          "absolute inset-0 transition-opacity duration-300",
+          onDark ? "opacity-0" : "opacity-100",
         )}
-      >
-        <span className="font-display text-[23px] font-black tracking-[-0.02em]">
-          EPS
-        </span>
-        <span className="font-display text-[10px] font-bold tracking-[0.25em]">
-          LOGISTICS
-        </span>
-      </span>
-
-      {tagline && (
-        <>
-          <span
-            className={cn(
-              "hidden h-8 w-px transition-colors duration-300 sm:block",
-              onDark ? "bg-white/35" : "bg-hairline",
-            )}
-          />
-          <span
-            className={cn(
-              "hidden font-display text-[8px] font-semibold uppercase leading-[1.5] tracking-[0.16em] transition-colors duration-300 sm:block",
-              onDark ? "text-white/70" : "text-faint",
-            )}
-          >
-            Delivering
-            <br />
-            Opportunities
-            <br />
-            Every Mile
-          </span>
-        </>
-      )}
+      />
+      <Image
+        src="/eps-lockup-light.png"
+        alt=""
+        aria-hidden
+        width={width}
+        height={height}
+        priority={priority}
+        className={cn(
+          "absolute inset-0 transition-opacity duration-300",
+          onDark ? "opacity-100" : "opacity-0",
+        )}
+      />
     </Link>
   );
 }

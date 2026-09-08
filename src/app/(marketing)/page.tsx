@@ -83,7 +83,7 @@ export default function HomePage() {
                 </li>
               ))}
             </ul>
-            <p className="whitespace-nowrap font-display text-[11px] font-bold uppercase tracking-[0.14em] text-white/50">
+            <p className="whitespace-nowrap font-display text-[11px] font-bold uppercase tracking-[0.14em] text-white/70">
               USDOT #{site.usdot} · MC #{site.mc}
             </p>
           </div>

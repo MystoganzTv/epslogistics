@@ -14,7 +14,9 @@
   --color-muted: #5b6b80;      /* parrafo sobre claro */
   --color-muted-strong: #4a5a70;
   --color-slate: #3a4a5e;      /* labels de formulario */
-  --color-faint: #7c8aa0;
+  /* Antes #7c8aa0: 3.38:1 sobre el canvas, por debajo del 4.5:1 que exige
+     WCAG AA para texto normal. #67758b da 4.51:1 y sigue leyendose gris. */
+  --color-faint: #67758b;
 
   --color-onDark: #b7c6da;     /* parrafo sobre oscuro */
   --color-onDark-strong: #c6d3e4;
@@ -68,9 +70,11 @@
   /* Contenedor del canvas: 1240px con 22px de padding lateral */
   .shell {
     width: 100%;
-    max-width: 1240px;
+    max-width: 1400px;
     margin-inline: auto;
-    padding-inline: 22px;
+    /* Fluido: 20px en movil, hasta 40px en pantallas grandes. Antes eran
+       1240px fijos y en un monitor ancho sobraba margen a los lados. */
+    padding-inline: clamp(20px, 3vw, 40px);
   }
 
   /* Eyebrow: la etiqueta pequena en mayusculas sobre cada seccion */

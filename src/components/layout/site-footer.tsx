@@ -5,7 +5,7 @@ import { nav, site } from "@/lib/site";
 
 function ColTitle({ children }: { children: React.ReactNode }) {
   return (
-    <div className="font-display text-[11.5px] font-bold uppercase tracking-[0.16em] text-[#5f7694]">
+    <div className="font-display text-[11.5px] font-bold uppercase tracking-[0.16em] text-[#677e9c]">
       {children}
     </div>
   );
@@ -22,7 +22,7 @@ export function SiteFooter() {
       <div className="shell pb-[30px] pt-14">
         <div className="grid gap-9 sm:grid-cols-2 lg:grid-cols-4">
           <div>
-            <Wordmark tone="light" markHeight={40} />
+            <Wordmark tone="light" height={44} />
             <p className="mt-5 font-display text-[15px] font-bold tracking-[-0.01em] text-brand-soft">
               {site.tagline}.
             </p>

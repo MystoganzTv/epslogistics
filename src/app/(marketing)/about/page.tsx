@@ -89,7 +89,7 @@ export default function AboutPage() {
                 key={step.n}
                 className="rounded-2xl border border-line bg-white px-6 py-[26px]"
               >
-                <div className="font-display text-[26px] font-black tracking-[-0.02em] text-[#c9d9f3]">
+                <div className="font-display text-[26px] font-black tracking-[-0.02em] text-[#8595af]">
                   {step.n}
                 </div>
                 <h3 className="mb-2 mt-3.5 font-display text-[17px] font-bold text-ink">

@@ -53,7 +53,7 @@ export function SiteHeader() {
       )}
     >
       <div className="shell flex h-[74px] items-center gap-[22px]">
-        <Wordmark tone={floating ? "light" : "dark"} tagline priority />
+        <Wordmark tone={floating ? "light" : "dark"} height={48} priority />
 
         <nav className="ml-auto hidden items-center gap-0.5 lg:flex">
           {nav.map((item) => (

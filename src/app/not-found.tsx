@@ -13,7 +13,7 @@ export default function NotFound() {
   return (
     <main className="flex min-h-dvh flex-col bg-ink">
       <div className="shell py-6">
-        <Wordmark tone="light" priority />
+        <Wordmark tone="light" height={42} priority />
       </div>
 
       <div className="shell flex flex-1 flex-col justify-center py-16">
