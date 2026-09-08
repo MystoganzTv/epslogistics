@@ -14,7 +14,7 @@ export default function HomePage() {
   return (
     <>
       {/* ---------- Hero: la foto a sangre, el header flota encima ---------- */}
-      <section className="relative isolate -mt-[74px] flex min-h-[680px] flex-col justify-end overflow-hidden pt-[74px] lg:min-h-[88vh]">
+      <section className="relative isolate -mt-[74px] flex min-h-[620px] flex-col justify-end overflow-hidden pt-[74px] lg:min-h-[min(88vh,880px)]">
         <Image
           src="/photos/hero-truck.webp"
           alt="EPS Logistics box truck on the interstate, headed for Washington DC, Richmond, Raleigh and Atlanta"
@@ -36,8 +36,8 @@ export default function HomePage() {
           <span className="ml-auto mt-3 block h-[3px] w-14 rounded-full bg-brand-bright" />
         </div>
 
-        <div className="shell animate-eps-up flex flex-1 flex-col justify-center py-16 lg:py-24">
-          <h1 className="display max-w-[15ch] text-[clamp(38px,5.4vw,72px)] uppercase leading-[1.02] tracking-[-0.03em] text-white">
+        <div className="shell animate-eps-up flex flex-1 flex-col justify-center py-12 lg:py-20">
+          <h1 className="hero-title display max-w-[15ch] uppercase leading-[1.02] tracking-[-0.03em] text-white">
             Reliable Freight.
             <br />
             Real Solutions.
@@ -63,7 +63,7 @@ export default function HomePage() {
         </div>
 
         {/* Franja de confianza, pegada al borde inferior del hero. */}
-        <div className="relative border-t border-white/15 bg-[rgba(6,17,33,0.35)] backdrop-blur-[2px]">
+        <div className="relative border-t border-white/15 bg-[rgba(6,17,33,0.55)]">
           <div className="shell flex flex-wrap items-center justify-between gap-x-6 gap-y-4 py-5">
             <ul className="flex flex-wrap items-center gap-y-4">
               {trust.map((t, i) => (

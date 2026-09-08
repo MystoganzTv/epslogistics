@@ -46,10 +46,10 @@ export function SiteHeader() {
   return (
     <header
       className={cn(
-        "sticky top-0 z-60 transform-gpu transition-colors duration-300",
+        "sticky top-0 z-60 transition-colors duration-300",
         floating
           ? "border-b border-transparent bg-transparent"
-          : "border-b border-line-header bg-white/95 backdrop-blur-[14px]",
+          : "border-b border-line-header bg-white",
       )}
     >
       <div className="shell flex h-[74px] items-center gap-[22px]">
