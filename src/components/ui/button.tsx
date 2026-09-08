@@ -6,7 +6,7 @@ type Variant = "primary" | "ink" | "outline" | "outlineLight" | "outlineBrand";
 type Size = "sm" | "md" | "lg";
 
 const base =
-  "inline-flex items-center justify-center gap-2.5 rounded-[9px] font-display font-bold whitespace-nowrap transition-[background-color,color,border-color,transform] duration-200";
+  "inline-flex items-center justify-center gap-2.5 rounded-[9px] font-display font-bold tracking-[0.012em] whitespace-nowrap transition-[background-color,color,border-color,transform] duration-200";
 
 const variants: Record<Variant, string> = {
   primary:
@@ -21,9 +21,9 @@ const variants: Record<Variant, string> = {
 };
 
 const sizes: Record<Size, string> = {
-  sm: "px-[21px] py-[13px] text-[14.5px] rounded-lg",
-  md: "px-[26px] py-[15px] text-[15.5px]",
-  lg: "px-7 py-4 text-base",
+  sm: "px-[21px] py-[13px] text-[15.5px] rounded-lg",
+  md: "px-[26px] py-[15px] text-[16.5px]",
+  lg: "px-7 py-4 text-[17px]",
 };
 
 type Common = {

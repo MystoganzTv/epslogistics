@@ -1,14 +1,16 @@
 import type { Metadata } from "next";
-import { Archivo, Manrope, Caveat } from "next/font/google";
+import { Barlow_Condensed, Manrope, Caveat } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { services, site } from "@/lib/site";
 import "./globals.css";
 
-const archivo = Archivo({
+// Condensada con linaje de senaletica de carretera: ocupa menos ancho que una
+// grotesca normal, asi que el titular del hero cabe con mas cuerpo.
+const barlow = Barlow_Condensed({
   subsets: ["latin"],
   weight: ["500", "600", "700", "800", "900"],
-  variable: "--font-archivo",
+  variable: "--font-barlow",
   display: "swap",
 });
 
@@ -112,7 +114,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${archivo.variable} ${manrope.variable} ${caveat.variable}`}
+      className={`${barlow.variable} ${manrope.variable} ${caveat.variable}`}
     >
       <body>
         <script
