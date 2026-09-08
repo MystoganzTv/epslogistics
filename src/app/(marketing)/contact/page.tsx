@@ -11,6 +11,7 @@ import type { IconName } from "@/lib/icons";
 export const metadata: Metadata = {
   title: "Contact",
   description: `Reach EPS Logistics directly — ${site.phone} or ${site.email}. You get the owner-operator, not a call center.`,
+  alternates: { canonical: "/contact" },
 };
 
 const cards: {

@@ -8,7 +8,8 @@ import { regions } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Coverage",
   description:
-    "EPS Logistics runs lanes in both directions between Virginia and the Mid-Atlantic, Southeast, Midwest and Southern United States.",
+    "EPS Logistics runs lanes in both directions between Virginia and Boston, New York, Philadelphia, Baltimore, Charlotte, Atlanta, Chicago, Detroit, Nashville, Memphis, Dallas and beyond.",
+  alternates: { canonical: "/coverage" },
 };
 
 export default function CoveragePage() {

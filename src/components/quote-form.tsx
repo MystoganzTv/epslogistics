@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useEffect, useRef } from "react";
 import { useFormStatus } from "react-dom";
 import Link from "next/link";
 import { submitQuoteRequest } from "@/app/actions/quote";
@@ -31,6 +31,13 @@ function SubmitButton() {
 
 export function QuoteForm() {
   const [state, formAction] = useActionState(submitQuoteRequest, initialState);
+  const startedAt = useRef<HTMLInputElement>(null);
+
+  // Marca de tiempo puesta desde el cliente: la pagina es estatica, asi que
+  // ponerla en el servidor daria la hora del build y la trampa no valdria.
+  useEffect(() => {
+    if (startedAt.current) startedAt.current.value = String(Date.now());
+  }, []);
 
   if (state.status === "success") {
     return (
@@ -74,6 +81,7 @@ export function QuoteForm() {
           Website
           <input type="text" name="website" tabIndex={-1} autoComplete="off" />
         </label>
+        <input type="hidden" name="startedAt" ref={startedAt} defaultValue="" />
       </div>
 
       <SectionLabel>Your company</SectionLabel>

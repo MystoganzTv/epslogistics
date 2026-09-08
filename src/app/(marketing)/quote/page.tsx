@@ -5,7 +5,8 @@ import { QuoteForm } from "@/components/quote-form";
 export const metadata: Metadata = {
   title: "Request a Quote",
   description:
-    "Send EPS Logistics your lane, dates, freight type, pallets and weight. Every quote is reviewed by the owner-operator running the truck.",
+    "Send EPS Logistics your lane, dates, freight type, pallets and weight. Every quote is reviewed by the owner-operator running the truck — no automated rates, no broker in the middle.",
+  alternates: { canonical: "/quote" },
 };
 
 export default function QuotePage() {

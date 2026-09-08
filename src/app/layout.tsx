@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Archivo, Manrope, Caveat } from "next/font/google";
-import { site } from "@/lib/site";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import { services, site } from "@/lib/site";
 import "./globals.css";
 
 const archivo = Archivo({
@@ -32,6 +34,17 @@ export const metadata: Metadata = {
   },
   description: site.description,
   applicationName: site.name,
+  alternates: { canonical: "/" },
+  keywords: [
+    "box truck carrier Virginia",
+    "Virginia freight company",
+    "Richmond box truck freight",
+    "Hampton Roads trucking company",
+    "regional freight Mid-Atlantic",
+    "dedicated routes Virginia",
+    "last mile delivery Virginia",
+    "owner operator carrier",
+  ],
   openGraph: {
     type: "website",
     siteName: site.name,
@@ -82,6 +95,15 @@ const jsonLd = {
     "dedicated freight routes",
     "last-mile business delivery",
   ],
+  priceRange: "$$",
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Freight services",
+    itemListElement: services.map((s) => ({
+      "@type": "Offer",
+      itemOffered: { "@type": "Service", name: s.title, description: s.body },
+    })),
+  },
 };
 
 export default function RootLayout({
@@ -98,6 +120,8 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         {children}
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );

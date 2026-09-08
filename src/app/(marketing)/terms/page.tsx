@@ -2,7 +2,11 @@ import type { Metadata } from "next";
 import { PageHero } from "@/components/sections/page-hero";
 import { site } from "@/lib/site";
 
-export const metadata: Metadata = { title: "Terms" };
+export const metadata: Metadata = {
+  title: "Terms",
+  description: "The terms that apply to this website and to quote requests submitted through it.",
+  alternates: { canonical: "/terms" },
+};
 
 export default function TermsPage() {
   return (

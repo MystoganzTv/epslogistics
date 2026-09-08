@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   title: "Why EPS",
   description:
     "One truck, one point of contact, one authority. Why shippers work with EPS Logistics directly instead of through a broker or dispatch layer.",
+  alternates: { canonical: "/why-eps" },
 };
 
 const proofs = [

@@ -3,17 +3,34 @@ import Link from "next/link";
 import { FeatureCard } from "@/components/ui/card";
 import { PageHero } from "@/components/sections/page-hero";
 import { QuoteBand } from "@/components/sections/quote-band";
+import { Faq } from "@/components/sections/faq";
+import { faq } from "@/lib/faq";
 import { services } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "Box truck freight, local and regional delivery, long-distance lanes, dedicated routes and last-mile business delivery — moved by EPS Logistics under its own authority.",
+    "Box truck freight out of Virginia: local and regional delivery, long-distance lanes, dedicated routes and last-mile business delivery — moved by EPS Logistics under its own USDOT and MC authority.",
+  alternates: { canonical: "/services" },
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faq.map((item) => ({
+    "@type": "Question",
+    name: item.q,
+    acceptedAnswer: { "@type": "Answer", text: item.a },
+  })),
 };
 
 export default function ServicesPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <PageHero
         eyebrow="Services"
         title="Transportation Solutions That Keep Your Business Moving"
@@ -44,6 +61,8 @@ export default function ServicesPage() {
           </p>
         </div>
       </section>
+
+      <Faq />
 
       <QuoteBand title="Tell us about your freight and we’ll get you a quote." />
     </>

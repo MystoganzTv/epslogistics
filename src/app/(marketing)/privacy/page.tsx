@@ -2,7 +2,11 @@ import type { Metadata } from "next";
 import { PageHero } from "@/components/sections/page-hero";
 import { site } from "@/lib/site";
 
-export const metadata: Metadata = { title: "Privacy Policy" };
+export const metadata: Metadata = {
+  title: "Privacy Policy",
+  description: "How EPS Logistics handles the information you send through this site.",
+  alternates: { canonical: "/privacy" },
+};
 
 export default function PrivacyPage() {
   return (

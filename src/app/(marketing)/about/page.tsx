@@ -7,7 +7,8 @@ import { howWeWork, site } from "@/lib/site";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "EPS Logistics is an owner-operated Virginia carrier running under its own USDOT and MC authority — not a broker, not a dispatch service.",
+    "EPS Logistics is an owner-operated Virginia box truck carrier running under its own USDOT and MC authority — not a broker, not a dispatch service.",
+  alternates: { canonical: "/about" },
 };
 
 export default function AboutPage() {
